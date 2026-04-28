@@ -30,7 +30,9 @@
  *   teacher         — 지도교사 이름
  *   deployUrl       — 배포된 웹앱 URL (없으면 "")
  *   githubUrl       — GitHub 저장소 URL (없으면 "")
- *   thumbnail       — 썸네일 이미지 경로 /public/thumbnails/ (없으면 "")
+ *   thumbnail       — 썸네일 이미지 경로 (없으면 "")
+ *                     예: "/images/team01-healthbridge.png"
+ *                     이미지 파일은 public/images/ 폴더에 넣어야 합니다.
  *
  * NOTE: 아래 데이터는 모두 PLACEHOLDER입니다 — 실제 팀 정보로 교체하세요.
  */

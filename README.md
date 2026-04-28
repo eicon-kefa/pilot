@@ -1,163 +1,266 @@
-# 16th e-ICON World Contest — Web App Portfolio
+# 제16회 e-ICON 세계대회 — 참가작 포트폴리오 사이트
 
-A static portfolio website showcasing student-built web applications for SDG 3: Health and Well-being.
-
-## Quick Start
-
-### Prerequisites
-- [Node.js](https://nodejs.org/) v18 or later
-
-### Run locally
-
-```bash
-npm install
-npm run dev
-```
-
-Open http://localhost:5173 in your browser.
-
-### Build for production
-
-```bash
-npm run build
-npm run preview   # preview the production build locally
-```
+**운영 주소:** https://pilot.e-icon.or.kr  
+**GitHub:** https://github.com/eicon-kefa/pilot  
+**주최:** 교육부 | **주관:** 한국디지털교육협회(KEFA)
 
 ---
 
-## Adding Team Data
+## 목차
 
-All project data lives in **`src/data/projects.js`**. Open that file and follow the instructions in the comments at the top.
+1. [운영진 필독 — 데이터 관리 원칙](#1-운영진-필독--데이터-관리-원칙)
+2. [프로젝트(팀) 추가하기](#2-프로젝트팀-추가하기)
+3. [이미지 추가하기](#3-이미지-추가하기)
+4. [전체 필드 레퍼런스](#4-전체-필드-레퍼런스)
+5. [사이트 배포하기](#5-사이트-배포하기)
+6. [로컬 개발 환경 실행](#6-로컬-개발-환경-실행)
+7. [프로젝트 폴더 구조](#7-프로젝트-폴더-구조)
 
-### Step-by-step
+---
 
-1. Open `src/data/projects.js`
-2. Copy one existing object (from `{` to the closing `},`)
-3. Paste it at the end of the array, before the closing `]`
-4. Fill in every field — use `""` for anything you don't have yet
-5. Increment the `id` by 1 from the last entry
-6. Save the file
+## 1. 운영진 필독 — 데이터 관리 원칙
 
-### Data structure reference
+> **모든 팀 정보는 `src/data/projects.js` 파일 하나에서만 수정합니다.**  
+> 이 파일 외의 다른 소스코드는 건드릴 필요가 없습니다.
 
-| Field | Type | Description |
-|---|---|---|
-| `id` | number | Unique ID — increment from last |
-| `teamName` | string | Official team name |
-| `country` | string | Country name (used for Country filter) |
-| `school` | string | School or institution name |
-| `projectTitle` | string | Title of the web application |
-| `theme` | string | One of the theme values below |
-| `problem` | string | SDG 3 problem addressed (1–2 sentences) |
-| `solution` | string | How the app solves it (1–2 sentences) |
-| `description` | string | Short card description (≤ 120 chars) |
-| `keyFeatures` | string[] | Array of feature strings (3–5 items) |
-| `techStack` | string[] | Array of technology names |
-| `members` | string[] | Array of student names |
-| `teacher` | string | Supervising teacher name |
-| `deployUrl` | string | Live URL — use `""` if not deployed yet |
-| `githubUrl` | string | GitHub repo URL — use `""` if private |
-| `thumbnail` | string | Path like `/thumbnails/team-name.png` — use `""` for placeholder |
+| 할 일 | 파일 |
+|--------|------|
+| 팀 추가 / 수정 / 삭제 | `src/data/projects.js` |
+| 썸네일 이미지 추가 | `public/images/` 폴더 |
+| 사이트 배포 | 터미널에서 명령어 1줄 |
 
-### Valid theme values
+---
 
-```
-"Mental Health" | "Fitness" | "Nutrition" | "Elderly Care" |
-"Disability" | "Maternal Health" | "Disease Prevention" | "Other"
-```
+## 2. 프로젝트(팀) 추가하기
 
-### Adding thumbnails
+### Step 1 — `src/data/projects.js` 파일 열기
 
-1. Save the image as a `.png` or `.jpg` file
-2. Place it in the `public/thumbnails/` folder (create the folder if it doesn't exist)
-3. Set `thumbnail: "/thumbnails/your-file.png"` in the project entry
+VS Code, 메모장 등 텍스트 편집기로 파일을 엽니다.
 
-### Importing from Excel / Google Sheets
+### Step 2 — 마지막 팀 항목 복사
 
-Copy each team's row and paste the values into the corresponding fields. Recommended column order in your spreadsheet:
+파일 안에서 아래와 같이 `{` 로 시작하고 `},` 로 끝나는 블록 하나를 찾아 **전체 복사**합니다.
 
-```
-ID | Team Name | Country | School | Project Title | Theme | Problem | Solution | Description | Key Features (;-separated) | Tech Stack (;-separated) | Members (;-separated) | Teacher | Deploy URL | GitHub URL
-```
-
-For array fields (keyFeatures, techStack, members), split by `;` in your spreadsheet and convert to a JS array:
 ```js
-// Excel cell: "Login; Dashboard; Analytics"
-keyFeatures: ["Login", "Dashboard", "Analytics"],
+  {
+    id: 5,
+    teamName: "FitPath",
+    country: "Vietnam",
+    ...
+    thumbnail: "",
+  },
+```
+
+### Step 3 — 배열 맨 끝에 붙여넣기
+
+`]` 바로 앞에 붙여넣은 뒤, 각 필드 값을 실제 팀 정보로 채웁니다.
+
+```js
+  // ─── 팀 6 ─────────────────────────────────────────────────────────────────
+  {
+    id: 6,                          // ← 이전 팀보다 1 증가
+    teamName: "팀명 (영문)",
+    country: "South Korea",         // ← 반드시 영문 국가명
+    school: "학교명",
+    projectTitle: "앱 제목",
+    theme: "Mental Health",         // ← 아래 유효값 목록 참고
+    problem: "영문 문제 설명",
+    problemKo: "한국어 문제 설명",
+    solution: "영문 해결책 설명",
+    solutionKo: "한국어 해결책 설명",
+    description: "영문 카드 설명 (120자 이내)",
+    descriptionKo: "한국어 카드 설명 (60자 이내)",
+    keyFeatures: ["기능1 (영문)", "기능2", "기능3"],
+    keyFeaturesKo: ["기능1 (한국어)", "기능2", "기능3"],
+    techStack: ["React", "Node.js"],
+    members: ["홍길동", "김철수"],
+    teacher: "박지도",
+    deployUrl: "https://팀앱주소.vercel.app",  // 없으면 ""
+    githubUrl: "https://github.com/...",        // 없으면 ""
+    thumbnail: "/images/team06-앱이름.png",     // 없으면 ""
+  },
+```
+
+### Step 4 — 파일 저장 후 배포
+
+파일을 저장하고 [5. 사이트 배포하기](#5-사이트-배포하기) 를 따릅니다.
+
+---
+
+### ⚠️ 주의사항
+
+- `id` 값은 **절대 중복되면 안 됩니다.** 항상 마지막 번호 + 1로 입력하세요.
+- `country` 필드는 **반드시 영문**으로 입력해야 국가 필터가 작동합니다.  
+  예: `"South Korea"` ✅ &nbsp;`"한국"` ❌
+- `theme` 필드는 아래 8개 값 중 **정확히 하나**를 입력하세요 (대소문자 구분).
+
+```
+"Mental Health"      정신 건강
+"Fitness"            체력/운동
+"Nutrition"          영양
+"Elderly Care"       노인 돌봄
+"Disability"         장애
+"Maternal Health"    모성 건강
+"Disease Prevention" 질병 예방
+"Other"              기타
 ```
 
 ---
 
-## Deploying to Vercel
+## 3. 이미지 추가하기
 
-### Option A — Vercel CLI
+### Step 1 — 이미지 파일 준비
 
-```bash
-npm install -g vercel
-vercel
+| 항목 | 권장 사양 |
+|------|---------|
+| 파일 형식 | `.png` 또는 `.jpg` |
+| 크기 | 가로 800px 이상 (4:3 비율 권장) |
+| 파일 크기 | 500KB 이하 (용량이 크면 로딩이 느려집니다) |
+| 파일명 | 영문·숫자·하이픈만 사용 (한글·공백 ❌) |
+
+**파일명 예시:** `team01-healthbridge.png`, `team06-mindmate.jpg`
+
+### Step 2 — 파일을 `public/images/` 폴더에 넣기
+
+```
+project/
+└── public/
+    └── images/
+        ├── team01-healthbridge.png   ← 여기에 넣기
+        ├── team02-mindmate.png
+        └── ...
 ```
 
-Follow the prompts. Vercel detects Vite automatically.
+### Step 3 — `projects.js`에서 경로 연결
 
-### Option B — GitHub + Vercel dashboard
+해당 팀의 `thumbnail` 필드를 아래 형식으로 입력합니다.
 
-1. Push this repository to GitHub
-2. Go to [vercel.com/new](https://vercel.com/new) and import the repo
-3. Vercel auto-detects the framework as **Vite**
-4. Click **Deploy** — done
+```js
+thumbnail: "/images/team01-healthbridge.png",
+```
 
-Build settings (auto-detected, but verify):
-- Framework Preset: **Vite**
-- Build Command: `npm run build`
-- Output Directory: `dist`
+> **경로 규칙:** 반드시 `/images/` 로 시작하고, `public/` 은 쓰지 않습니다.
 
-### Updating after adding new teams
+### 이미지가 없는 경우
 
-If connected to GitHub:
+이미지가 아직 없는 팀은 `thumbnail: ""` 로 두면, 테마 색상 기반의 추상 UI 일러스트가 자동으로 표시됩니다.
+
+---
+
+## 4. 전체 필드 레퍼런스
+
+| 필드 | 타입 | 설명 | 없을 때 |
+|------|------|------|---------|
+| `id` | number | 고유 번호. 마지막 항목 + 1 | 필수 |
+| `teamName` | string | 팀 이름 | 필수 |
+| `country` | string | **영문** 국가명. 필터에 사용됨 | 필수 |
+| `school` | string | 학교/기관명 | 필수 |
+| `projectTitle` | string | 프로젝트(웹앱) 제목 | 필수 |
+| `theme` | string | 위 8개 테마 중 하나 | 필수 |
+| `problem` | string | SDG 3 관련 문제 설명 — 영문 1~2문장 | `""` |
+| `problemKo` | string | SDG 3 관련 문제 설명 — 한국어 | `""` |
+| `solution` | string | 해결 방법 설명 — 영문 1~2문장 | `""` |
+| `solutionKo` | string | 해결 방법 설명 — 한국어 | `""` |
+| `description` | string | 카드 표시용 짧은 설명 — 영문 120자 이내 | `""` |
+| `descriptionKo` | string | 카드 표시용 짧은 설명 — 한국어 60자 이내 | `""` |
+| `keyFeatures` | string[] | 주요 기능 목록 — 영문 배열 3~5개 | `[]` |
+| `keyFeaturesKo` | string[] | 주요 기능 목록 — 한국어 배열 3~5개 | `[]` |
+| `techStack` | string[] | 사용 기술 배열 | `[]` |
+| `members` | string[] | 팀원 이름 배열 | `[]` |
+| `teacher` | string | 지도교사 이름 | `""` |
+| `deployUrl` | string | 배포된 웹앱 URL | `""` |
+| `githubUrl` | string | GitHub 저장소 URL | `""` |
+| `thumbnail` | string | `/images/파일명.png` 형식 경로 | `""` |
+
+---
+
+## 5. 사이트 배포하기
+
+> 팀 정보를 추가/수정한 후 아래 명령어를 실행하면 https://pilot.e-icon.or.kr 에 즉시 반영됩니다.
+
+터미널(명령 프롬프트)을 열고 프로젝트 폴더로 이동한 뒤 실행:
+
 ```bash
-git add src/data/projects.js
-git commit -m "add team X"
+npx vercel --prod
+```
+
+### GitHub에도 기록 남기기 (권장)
+
+```bash
+git add src/data/projects.js public/images/
+git commit -m "팀 추가: 팀명"
 git push
 ```
-Vercel redeploys automatically.
 
 ---
 
-## Project Structure
+## 6. 로컬 개발 환경 실행
+
+수정 결과를 배포 전에 미리 확인하고 싶을 때 사용합니다.
+
+**사전 준비:** [Node.js](https://nodejs.org/) v18 이상 설치
+
+```bash
+npm install      # 최초 1회만 실행
+npm run dev      # 개발 서버 시작 → http://localhost:5173
+```
+
+```bash
+npm run build    # 배포용 파일 생성
+npm run preview  # 빌드 결과 미리보기
+```
+
+---
+
+## 7. 프로젝트 폴더 구조
 
 ```
 project/
 ├── public/
 │   ├── favicon.svg
-│   └── thumbnails/          ← place team thumbnail images here
+│   └── images/              ← 팀 썸네일 이미지를 여기에 넣으세요
+│       ├── team01-xxx.png
+│       └── ...
 ├── src/
 │   ├── components/
 │   │   ├── Header.jsx / .module.css
 │   │   ├── Hero.jsx / .module.css
+│   │   ├── HeroMockupSVGs.jsx   ← 히어로 섹션 일러스트 (수정 불필요)
 │   │   ├── FilterBar.jsx / .module.css
 │   │   ├── ProjectGallery.jsx / .module.css
 │   │   ├── ProjectCard.jsx / .module.css
 │   │   ├── ProjectModal.jsx / .module.css
 │   │   └── Footer.jsx / .module.css
+│   ├── context/
+│   │   └── LangContext.jsx      ← 한/영 언어 전환 (수정 불필요)
+│   ├── i18n/
+│   │   └── translations.js      ← UI 텍스트 번역본 (수정 불필요)
 │   ├── data/
-│   │   └── projects.js      ← ALL team data lives here
+│   │   └── projects.js          ← ✅ 운영진이 수정하는 유일한 파일
 │   ├── App.jsx
 │   ├── App.module.css
-│   ├── index.css            ← design tokens + global styles
+│   ├── index.css
 │   └── main.jsx
 ├── index.html
 ├── package.json
 ├── vite.config.js
-└── README.md
+└── README.md                    ← 이 파일
 ```
 
 ---
 
-## Design System
+## 디자인 시스템 참고
 
-This site follows the **Cal.com** design language:
-- White canvas `#ffffff`, black primary CTA `#111111`
-- Light-gray cards `#f5f5f5`, dark footer `#101010`
-- Inter typeface (600 weight + negative letter-spacing for headlines)
-- Card radius 12px, button/input radius 8px, section gap 96px
-- Max content width 1200px
+이 사이트는 **Cal.com** 디자인 언어를 따릅니다.
+
+| 토큰 | 값 |
+|------|----|
+| 배경 | `#ffffff` |
+| 주요 CTA | `#111111` |
+| 카드 배경 | `#f5f5f5` |
+| 푸터 배경 | `#101010` |
+| 폰트 | Inter |
+| 카드 모서리 | 12px |
+| 버튼 모서리 | 8px |
+| 섹션 여백 | 96px |
+| 최대 너비 | 1200px |
