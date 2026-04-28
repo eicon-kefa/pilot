@@ -12,7 +12,9 @@
       "PowerShell(node --version)",
       "PowerShell(npm --version)",
       "Bash(identify \"C:/Users/hiked/project/public/eicon-logo.png\")",
-      "Bash(python3 -c ' *)"
+      "Bash(python3 -c ' *)",
+      "Bash(git rm *)",
+      "Bash(git push *)"
     ]
   }
 }
