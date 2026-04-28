@@ -2,17 +2,7 @@ import { useLang } from '../context/LangContext'
 import { translations, getThemeName } from '../i18n/translations'
 import { projects } from '../data/projects'
 import styles from './Hero.module.css'
-
-const THEME_COLORS = {
-  'Mental Health':      '#8b5cf6',
-  'Fitness':            '#34d399',
-  'Nutrition':          '#fb923c',
-  'Elderly Care':       '#3b82f6',
-  'Disability':         '#ec4899',
-  'Maternal Health':    '#f59e0b',
-  'Disease Prevention': '#10b981',
-  'Other':              '#6b7280',
-}
+import { THEME_SVG_MAP, THEME_COLORS, SVGDefault } from './HeroMockupSVGs'
 
 export default function Hero({ totalProjects }) {
   const { lang } = useLang()
@@ -92,30 +82,15 @@ export default function Hero({ totalProjects }) {
               <div className={styles.mockupGrid}>
                 {mockupProjects.map((p) => {
                   const color = THEME_COLORS[p.theme] || THEME_COLORS['Other']
-                  const themeName = getThemeName(p.theme, lang)
+                  const SvgComponent = THEME_SVG_MAP[p.theme] || SVGDefault
                   return (
                     <div key={p.id} className={styles.mockupItem}>
-                      {/* 썸네일 영역 — 이미지 있으면 표시, 없으면 테마 색 타일 */}
+                      {/* 썸네일 영역 — 테마별 SVG 일러스트 */}
                       <div
                         className={styles.mockupThumb}
-                        style={{
-                          background: p.thumbnail
-                            ? `url(${p.thumbnail}) center/cover`
-                            : `linear-gradient(135deg, ${color}22 0%, ${color}44 100%)`,
-                          borderBottom: `2px solid ${color}55`,
-                        }}
+                        style={{ borderBottom: `2px solid ${color}55` }}
                       >
-                        {!p.thumbnail && (
-                          <div className={styles.mockupThumbInner}>
-                            <span
-                              className={styles.mockupThumbDot}
-                              style={{ background: color }}
-                            />
-                            <span className={styles.mockupThumbLabel}>
-                              {themeName}
-                            </span>
-                          </div>
-                        )}
+                        <SvgComponent color={color} />
                       </div>
                       <div className={styles.mockupLine} />
                       <div className={styles.mockupLineShort} />
