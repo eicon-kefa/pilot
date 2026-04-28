@@ -1,246 +1,410 @@
 /**
  * 히어로 섹션 목업 카드용 미니 앱 UI SVG 일러스트
- * 각 프로젝트 테마에 맞는 실제 앱 화면처럼 보이도록 디자인
+ * 텍스트 없는 추상 도형으로만 구성
  */
 
-/* ── 1. 질병 예방 — 지도 + 의료 시설 핀 ─────────────────────────────── */
+/* ── 1. 질병 예방 — 지도 + 의료 핀 ────────────────────────────────────── */
 export function SVGDiseasePreventionMap({ color = '#10b981' }) {
   return (
     <svg viewBox="0 0 120 90" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ width: '100%', height: '100%' }}>
       {/* 배경 */}
-      <rect width="120" height="90" fill="#f0fdf8" />
+      <rect width="120" height="90" fill={`${color}0d`} />
       {/* 지도 격자 */}
-      {[15,30,45,60,75].map(y => <line key={y} x1="0" y1={y} x2="120" y2={y} stroke={color} strokeWidth="0.4" opacity="0.2" />)}
-      {[20,40,60,80,100].map(x => <line key={x} x1={x} y1="0" x2={x} y2="90" stroke={color} strokeWidth="0.4" opacity="0.2" />)}
+      {[18,36,54,72].map(y => <line key={`h${y}`} x1="0" y1={y} x2="120" y2={y} stroke={color} strokeWidth="0.5" opacity="0.15" />)}
+      {[24,48,72,96].map(x => <line key={`v${x}`} x1={x} y1="0" x2={x} y2="90" stroke={color} strokeWidth="0.5" opacity="0.15" />)}
       {/* 도로 */}
-      <path d="M0 45 Q30 38 60 45 Q90 52 120 42" stroke={color} strokeWidth="2.5" opacity="0.25" fill="none" />
-      <path d="M0 62 Q40 58 80 62 Q100 64 120 60" stroke={color} strokeWidth="1.5" opacity="0.15" fill="none" />
-      <path d="M48 0 Q50 30 47 90" stroke={color} strokeWidth="2" opacity="0.2" fill="none" />
-      <path d="M85 0 Q88 40 84 90" stroke={color} strokeWidth="1.5" opacity="0.15" fill="none" />
+      <path d="M0 42 Q28 36 58 43 Q88 50 120 40" stroke={color} strokeWidth="3" opacity="0.2" fill="none" strokeLinecap="round" />
+      <path d="M0 60 Q35 56 75 60 Q100 63 120 58" stroke={color} strokeWidth="2" opacity="0.12" fill="none" strokeLinecap="round" />
+      <path d="M46 0 Q48 28 45 90" stroke={color} strokeWidth="2.5" opacity="0.18" fill="none" strokeLinecap="round" />
+      <path d="M82 0 Q85 38 81 90" stroke={color} strokeWidth="2" opacity="0.12" fill="none" strokeLinecap="round" />
       {/* 블록 */}
-      <rect x="6" y="18" width="18" height="14" rx="2" fill={color} opacity="0.08" />
-      <rect x="62" y="50" width="16" height="10" rx="2" fill={color} opacity="0.08" />
-      <rect x="90" y="20" width="22" height="16" rx="2" fill={color} opacity="0.08" />
-      {/* 위치 핀 1 (주요) */}
-      <circle cx="50" cy="30" r="8" fill={color} />
-      <text x="50" y="33" textAnchor="middle" fontSize="9" fill="white" fontWeight="bold">+</text>
-      <path d="M50 38 L50 48" stroke={color} strokeWidth="2" strokeLinecap="round" />
-      <circle cx="50" cy="50" r="2" fill={color} opacity="0.4" />
-      {/* 위치 핀 2 */}
-      <circle cx="88" cy="42" r="6" fill={color} opacity="0.7" />
-      <text x="88" y="45" textAnchor="middle" fontSize="8" fill="white" fontWeight="bold">+</text>
-      <path d="M88 48 L88 55" stroke={color} strokeWidth="1.5" strokeLinecap="round" opacity="0.7" />
-      <circle cx="88" cy="56" r="1.5" fill={color} opacity="0.3" />
-      {/* 위치 핀 3 */}
-      <circle cx="22" cy="55" r="5" fill={color} opacity="0.5" />
-      <text x="22" y="57.5" textAnchor="middle" fontSize="7" fill="white" fontWeight="bold">+</text>
+      <rect x="5" y="16" width="20" height="14" rx="2" fill={color} opacity="0.1" />
+      <rect x="58" y="47" width="16" height="10" rx="2" fill={color} opacity="0.1" />
+      <rect x="88" y="18" width="24" height="16" rx="2" fill={color} opacity="0.1" />
+      <rect x="5" y="64" width="14" height="10" rx="2" fill={color} opacity="0.07" />
+      {/* 핀 1 (주요) — 십자 도형 */}
+      <circle cx="50" cy="28" r="9" fill={color} />
+      <circle cx="50" cy="28" r="9" fill="white" opacity="0.15" />
+      <rect x="46.5" y="26.5" width="7" height="2.5" rx="1.2" fill="white" />
+      <rect x="48.75" y="24.5" width="2.5" height="7" rx="1.2" fill="white" />
+      <path d="M50 37 L50 47" stroke={color} strokeWidth="2.2" strokeLinecap="round" />
+      <circle cx="50" cy="49" r="2" fill={color} opacity="0.35" />
+      {/* 핀 2 */}
+      <circle cx="87" cy="40" r="6.5" fill={color} opacity="0.75" />
+      <rect x="84.25" y="38.75" width="5.5" height="2" rx="1" fill="white" />
+      <rect x="86" y="37" width="2" height="5.5" rx="1" fill="white" />
+      <path d="M87 47 L87 54" stroke={color} strokeWidth="1.8" strokeLinecap="round" opacity="0.7" />
+      <circle cx="87" cy="55.5" r="1.5" fill={color} opacity="0.3" />
+      {/* 핀 3 */}
+      <circle cx="20" cy="53" r="5" fill={color} opacity="0.5" />
+      <rect x="17.5" y="52" width="5" height="2" rx="1" fill="white" />
+      <rect x="19" y="50.5" width="2" height="5" rx="1" fill="white" />
       {/* 하단 카드 */}
-      <rect x="6" y="68" width="108" height="18" rx="4" fill="white" opacity="0.95" />
-      <circle cx="18" cy="77" r="5" fill={color} opacity="0.15" />
-      <text x="18" y="79.5" textAnchor="middle" fontSize="7" fill={color}>📍</text>
-      <rect x="28" y="73" width="36" height="3" rx="1.5" fill={color} opacity="0.7" />
-      <rect x="28" y="79" width="50" height="2.5" rx="1.2" fill="#e5e7eb" />
-      <rect x="95" y="73" width="14" height="8" rx="2" fill={color} />
-      <text x="102" y="79" textAnchor="middle" fontSize="5.5" fill="white" fontWeight="bold">길찾기</text>
+      <rect x="6" y="67" width="108" height="19" rx="4" fill="white" opacity="0.92" />
+      <circle cx="18" cy="76.5" r="5.5" fill={color} opacity="0.15" />
+      <circle cx="18" cy="76.5" r="3" fill={color} opacity="0.4" />
+      <rect x="29" y="73" width="38" height="3.5" rx="1.75" fill={color} opacity="0.6" />
+      <rect x="29" y="79" width="52" height="2.5" rx="1.25" fill={color} opacity="0.12" />
+      <rect x="93" y="72" width="16" height="9" rx="2.5" fill={color} />
+      <rect x="96" y="75.5" width="10" height="2" rx="1" fill="white" />
     </svg>
   )
 }
 
-/* ── 2. 정신 건강 — 감정 트래커 + 차트 ──────────────────────────────── */
+/* ── 2. 정신 건강 — 감정 링 + 꺾은선 차트 ──────────────────────────────── */
 export function SVGMentalHealthTracker({ color = '#8b5cf6' }) {
+  const pts = [{x:14,y:76},{x:26,y:70},{x:38,y:73},{x:50,y:64},{x:62,y:67},{x:74,y:60},{x:86,y:57},{x:98,y:59},{x:110,y:55}]
   return (
     <svg viewBox="0 0 120 90" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ width: '100%', height: '100%' }}>
-      <rect width="120" height="90" fill="#faf5ff" />
-      {/* 헤더 */}
+      <rect width="120" height="90" fill={`${color}0d`} />
+      {/* 헤더 바 */}
       <rect width="120" height="20" fill={color} />
       <circle cx="14" cy="10" r="5" fill="white" opacity="0.2" />
-      <rect x="24" y="7.5" width="40" height="3" rx="1.5" fill="white" opacity="0.6" />
-      <rect x="24" y="13" width="25" height="2" rx="1" fill="white" opacity="0.3" />
-      <rect x="100" y="7" width="14" height="7" rx="2" fill="white" opacity="0.2" />
-      {/* 오늘의 기분 라벨 */}
-      <rect x="8" y="25" width="50" height="3" rx="1.5" fill={color} opacity="0.4" />
-      {/* 이모지 감정 선택 행 */}
+      <rect x="24" y="7.5" width="42" height="3.5" rx="1.75" fill="white" opacity="0.5" />
+      <rect x="24" y="13.5" width="26" height="2.5" rx="1.25" fill="white" opacity="0.25" />
+      <circle cx="106" cy="10" r="5" fill="white" opacity="0.15" />
+      <rect x="93" y="8" width="10" height="4" rx="2" fill="white" opacity="0.2" />
+      {/* 섹션 라벨 바 */}
+      <rect x="8" y="25" width="44" height="3" rx="1.5" fill={color} opacity="0.35" />
+      {/* 감정 링 5개 — 빈 원→채워진 원 스케일로 기분 표현 */}
       {[
-        { x: 14, emoji: '😔', selected: false },
-        { x: 34, emoji: '😐', selected: false },
-        { x: 54, emoji: '🙂', selected: true  },
-        { x: 74, emoji: '😄', selected: false },
-        { x: 94, emoji: '🥰', selected: false },
-      ].map(({ x, emoji, selected }) => (
+        { x: 14, fill: 0.12 },
+        { x: 34, fill: 0.28 },
+        { x: 54, fill: 1,    selected: true },
+        { x: 74, fill: 0.45 },
+        { x: 94, fill: 0.2  },
+      ].map(({ x, fill, selected }) => (
         <g key={x}>
-          {selected && <circle cx={x + 6} cy="42" r="9" fill={color} opacity="0.15" stroke={color} strokeWidth="1" />}
-          <text x={x + 6} y="46" textAnchor="middle" fontSize="10">{emoji}</text>
+          {selected && <circle cx={x + 6} cy="42" r="10" fill={color} opacity="0.12" stroke={color} strokeWidth="1.2" />}
+          <circle cx={x + 6} cy="42" r="6" fill={color} opacity={fill} />
+          <circle cx={x + 6} cy="42" r="6" stroke={color} strokeWidth="1" opacity="0.3" fill="none" />
+          {selected && <circle cx={x + 6} cy="42" r="2.5" fill="white" opacity="0.8" />}
         </g>
       ))}
-      {/* 주간 차트 영역 */}
-      <rect x="8" y="56" width="104" height="28" rx="4" fill="white" opacity="0.9" />
-      <rect x="12" y="59" width="28" height="2.5" rx="1.2" fill={color} opacity="0.5" />
-      {/* 꺾은선 그래프 */}
-      {[
-        {x:16,y:78},{x:30,y:72},{x:44,y:74},{x:58,y:66},{x:72,y:68},{x:86,y:63},{x:100,y:65}
-      ].map((p, i, arr) => i < arr.length - 1
-        ? <line key={i} x1={p.x} y1={p.y} x2={arr[i+1].x} y2={arr[i+1].y} stroke={color} strokeWidth="1.8" strokeLinecap="round" />
-        : null
-      )}
-      {[
-        {x:16,y:78},{x:30,y:72},{x:44,y:74},{x:58,y:66},{x:72,y:68},{x:86,y:63},{x:100,y:65}
-      ].map((p, i) => (
-        <circle key={i} cx={p.x} cy={p.y} r={i === 5 ? 3 : 1.5} fill={color} opacity={i === 5 ? 1 : 0.5} />
+      {/* 차트 카드 */}
+      <rect x="8" y="53" width="104" height="32" rx="4" fill="white" opacity="0.88" />
+      <rect x="13" y="58" width="30" height="3" rx="1.5" fill={color} opacity="0.4" />
+      <rect x="13" y="63" width="18" height="2" rx="1" fill={color} opacity="0.18" />
+      {/* 영역 채우기 */}
+      <path
+        d={`M${pts[0].x} 82 ${pts.map(p=>`L${p.x} ${p.y}`).join(' ')} L${pts[pts.length-1].x} 82 Z`}
+        fill={color} opacity="0.07"
+      />
+      {/* 꺾은선 */}
+      <polyline
+        points={pts.map(p=>`${p.x},${p.y}`).join(' ')}
+        stroke={color} strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round"
+      />
+      {/* 점 */}
+      {pts.map((p, i) => (
+        <circle key={i} cx={p.x} cy={p.y} r={i === 6 ? 3 : 1.5}
+          fill={color} opacity={i === 6 ? 1 : 0.4} />
       ))}
     </svg>
   )
 }
 
-/* ── 3. 영양 — 식판 + 영양소 바 ─────────────────────────────────────── */
+/* ── 3. 영양 — 도넛 차트 + 바 차트 ─────────────────────────────────────── */
 export function SVGNutritionTracker({ color = '#fb923c' }) {
+  const bars = [
+    { pct: 72, c: color },
+    { pct: 55, c: '#34d399' },
+    { pct: 38, c: '#8b5cf6' },
+  ]
   return (
     <svg viewBox="0 0 120 90" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ width: '100%', height: '100%' }}>
-      <rect width="120" height="90" fill="#fff7ed" />
+      <rect width="120" height="90" fill={`${color}0d`} />
       {/* 헤더 */}
       <rect width="120" height="18" fill={color} />
-      <text x="8" y="12" fontSize="8" fill="white" fontWeight="bold" opacity="0.9">NutriKids</text>
-      <rect x="90" y="6" width="22" height="7" rx="2" fill="white" opacity="0.2" />
-      <text x="101" y="11.5" textAnchor="middle" fontSize="5.5" fill="white">+ 기록</text>
-      {/* 도넛 차트 */}
-      <circle cx="38" cy="50" r="22" fill="white" stroke="#e5e7eb" strokeWidth="0.5" />
-      {/* 도넛 세그먼트 */}
-      <circle cx="38" cy="50" r="16" fill="none" stroke="#f3f4f6" strokeWidth="12" />
-      <circle cx="38" cy="50" r="16" fill="none" stroke={color} strokeWidth="12"
-        strokeDasharray="28 72" strokeDashoffset="25" strokeLinecap="round" />
-      <circle cx="38" cy="50" r="16" fill="none" stroke="#34d399" strokeWidth="12"
-        strokeDasharray="22 78" strokeDashoffset="-3" strokeLinecap="round" />
-      <circle cx="38" cy="50" r="16" fill="none" stroke="#8b5cf6" strokeWidth="12"
-        strokeDasharray="18 82" strokeDashoffset="-25" strokeLinecap="round" />
-      <circle cx="38" cy="50" r="8" fill="white" />
-      <text x="38" y="48" textAnchor="middle" fontSize="7" fill="#374151" fontWeight="bold">68%</text>
-      <text x="38" y="56" textAnchor="middle" fontSize="5" fill="#6b7280">달성</text>
-      {/* 영양소 바 목록 */}
-      {[
-        { label: '탄수화물', val: 72, color: color,     y: 26 },
-        { label: '단백질',   val: 55, color: '#34d399', y: 34 },
-        { label: '지방',     val: 40, color: '#8b5cf6', y: 42 },
-      ].map(({ label, val, color: c, y }) => (
-        <g key={label}>
-          <text x="68" y={y + 3} fontSize="5.5" fill="#6b7280">{label}</text>
-          <rect x="68" y={y + 5} width="44" height="4" rx="2" fill="#f3f4f6" />
-          <rect x="68" y={y + 5} width={44 * val / 100} height="4" rx="2" fill={c} opacity="0.8" />
-          <text x="115" y={y + 9} textAnchor="end" fontSize="5" fill="#374151">{val}%</text>
-        </g>
-      ))}
-      {/* 하단 */}
-      <rect x="6" y="70" width="108" height="16" rx="4" fill="white" opacity="0.9" />
-      <text x="14" y="80" fontSize="6" fill="#6b7280">오늘 식사 3회 기록 완료</text>
-      <circle cx="106" cy="78" r="5" fill={color} opacity="0.8" />
-      <text x="106" y="80.5" textAnchor="middle" fontSize="7" fill="white">✓</text>
+      <rect x="8" y="6.5" width="32" height="5" rx="2.5" fill="white" opacity="0.5" />
+      <rect x="44" y="6.5" width="18" height="5" rx="2.5" fill="white" opacity="0.2" />
+      <rect x="88" y="6" width="24" height="7" rx="2" fill="white" opacity="0.18" />
+      <rect x="92" y="9" width="16" height="2.5" rx="1.25" fill="white" opacity="0.5" />
+      {/* 도넛 차트 — 배경 */}
+      <circle cx="38" cy="52" r="24" fill="white" stroke={`${color}22`} strokeWidth="1" />
+      <circle cx="38" cy="52" r="17" fill="none" stroke="#f0f0f0" strokeWidth="13" />
+      {/* 세그먼트 3개 */}
+      <circle cx="38" cy="52" r="17" fill="none" stroke={color} strokeWidth="13"
+        strokeDasharray="38 69" strokeDashoffset="27" strokeLinecap="butt" />
+      <circle cx="38" cy="52" r="17" fill="none" stroke="#34d399" strokeWidth="13"
+        strokeDasharray="30 77" strokeDashoffset="-11" strokeLinecap="butt" />
+      <circle cx="38" cy="52" r="17" fill="none" stroke="#8b5cf6" strokeWidth="13"
+        strokeDasharray="24 83" strokeDashoffset="-41" strokeLinecap="butt" />
+      {/* 도넛 중앙 */}
+      <circle cx="38" cy="52" r="10" fill="white" />
+      {/* 중앙 진행률 표시 — 작은 호 */}
+      <circle cx="38" cy="52" r="6" fill="none" stroke={color} strokeWidth="3"
+        strokeDasharray="27 10" strokeDashoffset="7" strokeLinecap="round" opacity="0.7" />
+      {/* 오른쪽 바 차트 3개 */}
+      {bars.map(({ pct, c }, i) => {
+        const y = 24 + i * 14
+        return (
+          <g key={i}>
+            <rect x="72" y={y} width="5" height="5" rx="1.5" fill={c} opacity="0.85" />
+            <rect x="82" y={y + 1} width="32" height="3" rx="1.5" fill={c} opacity="0.12" />
+            <rect x="82" y={y + 1} width={32 * pct / 100} height="3" rx="1.5" fill={c} opacity="0.75" />
+          </g>
+        )
+      })}
+      {/* 범례 점 */}
+      <circle cx="75" cy="71" r="3" fill={color} opacity="0.7" />
+      <circle cx="84" cy="71" r="3" fill="#34d399" opacity="0.7" />
+      <circle cx="93" cy="71" r="3" fill="#8b5cf6" opacity="0.7" />
+      {/* 하단 카드 */}
+      <rect x="6" y="78" width="108" height="9" rx="3" fill="white" opacity="0.85" />
+      <rect x="12" y="81" width="52" height="2.5" rx="1.25" fill={color} opacity="0.3" />
+      <circle cx="103" cy="82.5" r="3.5" fill={color} opacity="0.7" />
+      <rect x="101.2" y="81.7" width="3.5" height="1.5" rx="0.75" fill="white" />
+      <rect x="102.2" y="80.7" width="1.5" height="3.5" rx="0.75" fill="white" opacity="0" />
+      {/* 체크 */}
+      <path d="M101.5 82.5 L103 84 L105.5 81" stroke="white" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   )
 }
 
-/* ── 4. 노인 돌봄 — 건강 대시보드 ───────────────────────────────────── */
+/* ── 4. 노인 돌봄 — 헬스 대시보드 ──────────────────────────────────────── */
 export function SVGElderCare({ color = '#3b82f6' }) {
+  const ecg = [6,6,6,6,3,8,1,11,6,6,6,6]
+  const ecgPts = ecg.map((v, i) => `${10 + i * 3.5},${48 - v}`)
   return (
     <svg viewBox="0 0 120 90" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ width: '100%', height: '100%' }}>
-      <rect width="120" height="90" fill="#eff6ff" />
+      <rect width="120" height="90" fill={`${color}0d`} />
       {/* 헤더 */}
       <rect width="120" height="18" fill={color} />
-      <text x="8" y="12" fontSize="8" fill="white" fontWeight="bold" opacity="0.9">ElderCare360</text>
-      <circle cx="108" cy="9" r="5" fill="white" opacity="0.2" />
-      <text x="108" y="11.5" textAnchor="middle" fontSize="7" fill="white">🔔</text>
+      <circle cx="12" cy="9" r="4.5" fill="white" opacity="0.2" />
+      <rect x="22" y="6.5" width="46" height="5" rx="2.5" fill="white" opacity="0.5" />
+      <rect x="22" y="13" width="28" height="2.5" rx="1.25" fill="white" opacity="0.22" />
+      {/* 알림 점 */}
+      <circle cx="106" cy="9" r="5" fill="white" opacity="0.15" />
+      <circle cx="106" cy="9" r="2.5" fill="white" opacity="0.5" />
+      <circle cx="109" cy="6" r="2" fill="#f87171" />
       {/* 심박수 카드 */}
-      <rect x="6" y="22" width="50" height="26" rx="4" fill="white" />
-      <text x="12" y="31" fontSize="5.5" fill="#6b7280">심박수</text>
-      <text x="12" y="41" fontSize="14" fill={color} fontWeight="bold">72</text>
-      <text x="34" y="41" fontSize="5.5" fill="#6b7280">bpm</text>
-      {/* 심박 선 */}
-      <polyline points="10,44 16,44 19,38 22,50 25,44 28,44 31,40 34,48 37,44 50,44"
-        stroke={color} strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+      <rect x="6" y="22" width="52" height="28" rx="4" fill="white" opacity="0.92" />
+      {/* 심박 아이콘 — 하트 */}
+      <path d="M16 30 C16 27.5 18.5 26 20.5 28 C22.5 26 25 27.5 25 30 C25 34 20.5 37 20.5 37 C20.5 37 16 34 16 30Z"
+        fill={color} opacity="0.85" />
+      <rect x="12" y="39" width="22" height="3" rx="1.5" fill={color} opacity="0.25" />
+      {/* 숫자 대신 큰 바 */}
+      <rect x="32" y="28" width="20" height="6" rx="2" fill={color} opacity="0.7" />
+      <rect x="32" y="36" width="12" height="3" rx="1.5" fill={color} opacity="0.25" />
+      {/* ECG 라인 */}
+      <polyline points={ecgPts.join(' ')}
+        stroke={color} strokeWidth="1.8" fill="none" strokeLinecap="round" strokeLinejoin="round" />
       {/* 걸음수 카드 */}
-      <rect x="64" y="22" width="50" height="26" rx="4" fill="white" />
-      <text x="70" y="31" fontSize="5.5" fill="#6b7280">오늘 걸음수</text>
-      <text x="70" y="41" fontSize="14" fill="#10b981" fontWeight="bold">4,821</text>
-      <text x="70" y="47" fontSize="5" fill="#6b7280">목표 6,000보</text>
-      <rect x="70" y="43" width="36" height="3" rx="1.5" fill="#f3f4f6" />
-      <rect x="70" y="43" width="29" height="3" rx="1.5" fill="#10b981" opacity="0.7" />
+      <rect x="62" y="22" width="52" height="28" rx="4" fill="white" opacity="0.92" />
+      {/* 발자국 아이콘 대체 — 두 타원 */}
+      <ellipse cx="72" cy="29" rx="4" ry="5.5" fill="#10b981" opacity="0.7" transform="rotate(-10 72 29)" />
+      <ellipse cx="79" cy="32" rx="4" ry="5.5" fill="#10b981" opacity="0.4" transform="rotate(10 79 32)" />
+      {/* 걸음 수 바 */}
+      <rect x="68" y="39" width="40" height="4" rx="2" fill="#10b981" opacity="0.12" />
+      <rect x="68" y="39" width="28" height="4" rx="2" fill="#10b981" opacity="0.6" />
+      <rect x="68" y="44.5" width="22" height="2.5" rx="1.25" fill="#10b981" opacity="0.2" />
       {/* 알림 카드 */}
-      <rect x="6" y="52" width="108" height="14" rx="4" fill="#fef9c3" />
-      <text x="12" y="61" fontSize="6" fill="#854d0e">⚠ 심박수가 평소보다 높습니다. 확인해주세요.</text>
+      <rect x="6" y="54" width="108" height="14" rx="4" fill="#fef9c3" />
+      {/* 경고 삼각형 */}
+      <path d="M14 63 L18 56 L22 63 Z" fill="#f59e0b" opacity="0.8" />
+      <rect x="17.5" y="58.5" width="1" height="3" rx="0.5" fill="white" />
+      <circle cx="18" cy="62.5" r="0.6" fill="white" />
+      <rect x="26" y="59" width="60" height="2.5" rx="1.25" fill="#92400e" opacity="0.3" />
+      <rect x="26" y="63.5" width="42" height="2" rx="1" fill="#92400e" opacity="0.18" />
       {/* 복약 카드 */}
-      <rect x="6" y="70" width="108" height="16" rx="4" fill="white" />
-      <text x="12" y="79" fontSize="6" fill="#374151">💊 오후 복약 알림 — 오후 2:00</text>
-      <rect x="98" y="73" width="12" height="7" rx="2" fill={color} />
-      <text x="104" y="78.5" textAnchor="middle" fontSize="5" fill="white">확인</text>
+      <rect x="6" y="72" width="108" height="15" rx="4" fill="white" opacity="0.9" />
+      {/* 알약 아이콘 */}
+      <ellipse cx="15" cy="79.5" rx="6" ry="3.5" fill={color} opacity="0.7" />
+      <rect x="9" y="78" width="6" height="3" rx="0" fill="white" opacity="0.5" />
+      <rect x="24" y="76.5" width="48" height="3" rx="1.5" fill={color} opacity="0.25" />
+      <rect x="24" y="81.5" width="30" height="2.5" rx="1.25" fill={color} opacity="0.15" />
+      <rect x="96" y="75" width="14" height="9" rx="2.5" fill={color} />
+      <rect x="99" y="78.5" width="8" height="2" rx="1" fill="white" />
     </svg>
   )
 }
 
-/* ── 5. 체력/운동 — 운동 계획 + 진행 링 ─────────────────────────────── */
+/* ── 5. 체력/운동 — 진행 링 + 추상 목록 ─────────────────────────────────── */
 export function SVGFitness({ color = '#34d399' }) {
+  const items = [
+    { done: true,  pct: 1.0 },
+    { done: true,  pct: 1.0 },
+    { done: false, pct: 0.45 },
+    { done: false, pct: 0.0 },
+  ]
   return (
     <svg viewBox="0 0 120 90" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ width: '100%', height: '100%' }}>
-      <rect width="120" height="90" fill="#f0fdf4" />
+      <rect width="120" height="90" fill={`${color}0d`} />
       {/* 헤더 */}
       <rect width="120" height="18" fill={color} />
-      <text x="8" y="12" fontSize="8" fill="white" fontWeight="bold" opacity="0.9">FitPath</text>
-      <rect x="88" y="6" width="26" height="7" rx="2" fill="white" opacity="0.2" />
-      <text x="101" y="11.5" textAnchor="middle" fontSize="5" fill="white">맞춤 운동</text>
+      <circle cx="12" cy="9" r="5" fill="white" opacity="0.2" />
+      <rect x="22" y="6.5" width="28" height="5" rx="2.5" fill="white" opacity="0.5" />
+      <rect x="22" y="13" width="18" height="2.5" rx="1.25" fill="white" opacity="0.22" />
+      <rect x="86" y="6" width="28" height="7" rx="2" fill="white" opacity="0.18" />
+      <rect x="89" y="9" width="22" height="2.5" rx="1.25" fill="white" opacity="0.45" />
       {/* 진행 링 */}
-      <circle cx="36" cy="50" r="22" fill="white" stroke="#e5e7eb" strokeWidth="0.5" />
-      <circle cx="36" cy="50" r="16" fill="none" stroke="#e5e7eb" strokeWidth="8" />
-      <circle cx="36" cy="50" r="16" fill="none" stroke={color} strokeWidth="8"
-        strokeDasharray="65 35" strokeDashoffset="25" strokeLinecap="round" />
-      <circle cx="36" cy="50" r="8" fill="white" />
-      <text x="36" y="48" textAnchor="middle" fontSize="9" fill="#111111" fontWeight="bold">65%</text>
-      <text x="36" y="56" textAnchor="middle" fontSize="5" fill="#6b7280">완료</text>
-      {/* 운동 목록 */}
-      {[
-        { label: '스트레칭',   done: true,  y: 24 },
-        { label: '상체 운동',  done: true,  y: 36 },
-        { label: '유산소 10분', done: false, y: 48 },
-        { label: '코어 운동',  done: false, y: 60 },
-      ].map(({ label, done, y }) => (
-        <g key={label}>
-          <circle cx="72" cy={y} r="5" fill={done ? color : '#f3f4f6'} />
-          <text x="72" y={y + 2} textAnchor="middle" fontSize="6" fill={done ? 'white' : '#9ca3af'}>{done ? '✓' : '○'}</text>
-          <text x="82" y={y + 2.5} fontSize="6" fill={done ? '#374151' : '#9ca3af'}
-            textDecoration={done ? 'line-through' : 'none'}
-            style={{ textDecoration: done ? 'line-through' : 'none' }}>
-            {label}
-          </text>
-        </g>
-      ))}
-      {/* 하단 버튼 */}
-      <rect x="6" y="72" width="108" height="14" rx="4" fill={color} />
-      <text x="60" y="81" textAnchor="middle" fontSize="7" fill="white" fontWeight="bold">다음 운동 시작하기 →</text>
+      <circle cx="36" cy="52" r="24" fill="white" stroke={`${color}22`} strokeWidth="1" />
+      {/* 트랙 */}
+      <circle cx="36" cy="52" r="17" fill="none" stroke={`${color}18`} strokeWidth="10" />
+      {/* 진행 (65%) */}
+      <circle cx="36" cy="52" r="17" fill="none" stroke={color} strokeWidth="10"
+        strokeDasharray="69 107" strokeDashoffset="27" strokeLinecap="round" />
+      {/* 안쪽 원 */}
+      <circle cx="36" cy="52" r="10" fill="white" />
+      {/* 중앙 작은 원 */}
+      <circle cx="36" cy="52" r="4" fill={color} opacity="0.2" />
+      <circle cx="36" cy="52" r="2" fill={color} opacity="0.6" />
+      {/* 운동 항목 목록 — 텍스트 없이 바로 표현 */}
+      {items.map(({ done, pct }, i) => {
+        const y = 24 + i * 13
+        return (
+          <g key={i}>
+            {/* 체크 원 */}
+            <circle cx="70" cy={y} r="5" fill={done ? color : `${color}18`} />
+            {done && (
+              <path d={`M67.5 ${y} L69.5 ${y+2} L72.5 ${y-2.5}`}
+                stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+            )}
+            {/* 라벨 바 */}
+            <rect x="80" y={y - 4.5} width="34" height="4" rx="2"
+              fill={done ? color : `${color}18`} opacity={done ? 0.7 : 1} />
+            {/* 서브 바 */}
+            {pct > 0 && (
+              <rect x="80" y={y + 1} width={34 * pct} height="2.5" rx="1.25" fill={color} opacity={done ? 0.3 : 0.5} />
+            )}
+          </g>
+        )
+      })}
+      {/* 하단 CTA 버튼 */}
+      <rect x="6" y="74" width="108" height="13" rx="4" fill={color} />
+      <rect x="30" y="78.5" width="50" height="4" rx="2" fill="white" opacity="0.4" />
+      <path d="M84 81 L88 81" stroke="white" strokeWidth="2" strokeLinecap="round" />
+      <path d="M86 79 L88 81 L86 83" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" fill="none" />
     </svg>
   )
 }
 
-/* ── 기본 — 알 수 없는 테마 ────────────────────────────────────────── */
+/* ── 6. 모성 건강 ──────────────────────────────────────────────────────── */
+export function SVGMaternalHealth({ color = '#f59e0b' }) {
+  return (
+    <svg viewBox="0 0 120 90" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ width: '100%', height: '100%' }}>
+      <rect width="120" height="90" fill={`${color}0d`} />
+      <rect width="120" height="18" fill={color} />
+      <circle cx="12" cy="9" r="5" fill="white" opacity="0.2" />
+      <rect x="22" y="6.5" width="44" height="5" rx="2.5" fill="white" opacity="0.5" />
+      <rect x="22" y="13" width="26" height="2.5" rx="1.25" fill="white" opacity="0.22" />
+      {/* 캘린더 카드 */}
+      <rect x="6" y="22" width="68" height="40" rx="4" fill="white" opacity="0.92" />
+      <rect x="6" y="22" width="68" height="10" rx="4" fill={color} opacity="0.15" />
+      <rect x="12" y="25" width="20" height="3" rx="1.5" fill={color} opacity="0.5" />
+      {/* 캘린더 점 그리드 */}
+      {[0,1,2,3,4,5,6].map(col =>
+        [0,1,2,3].map(row => {
+          const cx = 14 + col * 8
+          const cy = 38 + row * 6
+          const filled = (col + row) % 3 === 0 || (col === 2 && row === 1) || (col === 4 && row === 2)
+          return <circle key={`${col}-${row}`} cx={cx} cy={cy} r="2"
+            fill={filled ? color : '#e5e7eb'} opacity={filled ? 0.8 : 1} />
+        })
+      )}
+      {/* 오른쪽 카드들 */}
+      <rect x="78" y="22" width="36" height="18" rx="4" fill="white" opacity="0.92" />
+      {/* 하트 */}
+      <path d="M88 33 C88 30.5 90 29 91.5 31 C93 29 95 30.5 95 33 C95 37 91.5 39 91.5 39 C91.5 39 88 37 88 33Z"
+        fill={color} opacity="0.7" />
+      <rect x="100" y="26" width="10" height="3" rx="1.5" fill={color} opacity="0.4" />
+      <rect x="100" y="31" width="7" height="2.5" rx="1.25" fill={color} opacity="0.2" />
+      <rect x="78" y="44" width="36" height="18" rx="4" fill="white" opacity="0.92" />
+      {/* 원형 진행 */}
+      <circle cx="91" cy="53" r="7" fill="none" stroke={`${color}22`} strokeWidth="4" />
+      <circle cx="91" cy="53" r="7" fill="none" stroke={color} strokeWidth="4"
+        strokeDasharray="30 14" strokeDashoffset="11" strokeLinecap="round" />
+      <circle cx="91" cy="53" r="2.5" fill={color} opacity="0.4" />
+      <rect x="102" y="50" width="8" height="3" rx="1.5" fill={color} opacity="0.4" />
+      <rect x="102" y="55" width="6" height="2" rx="1" fill={color} opacity="0.2" />
+      {/* 하단 */}
+      <rect x="6" y="66" width="108" height="20" rx="4" fill="white" opacity="0.88" />
+      <rect x="12" y="71" width="60" height="3.5" rx="1.75" fill={color} opacity="0.35" />
+      <rect x="12" y="77" width="42" height="3" rx="1.5" fill={color} opacity="0.18" />
+      <circle cx="103" cy="76" r="7" fill={color} opacity="0.12" stroke={color} strokeWidth="1" />
+      <path d="M100 76 L102.5 78.5 L106 74" stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+    </svg>
+  )
+}
+
+/* ── 7. 장애 지원 ──────────────────────────────────────────────────────── */
+export function SVGDisability({ color = '#ec4899' }) {
+  return (
+    <svg viewBox="0 0 120 90" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ width: '100%', height: '100%' }}>
+      <rect width="120" height="90" fill={`${color}0d`} />
+      <rect width="120" height="18" fill={color} />
+      <circle cx="12" cy="9" r="5" fill="white" opacity="0.2" />
+      <rect x="22" y="6.5" width="44" height="5" rx="2.5" fill="white" opacity="0.5" />
+      <rect x="22" y="13" width="26" height="2.5" rx="1.25" fill="white" opacity="0.22" />
+      <rect x="96" y="6" width="18" height="7" rx="2" fill="white" opacity="0.18" />
+      {/* 큰 접근성 아이콘 카드 */}
+      <rect x="6" y="22" width="50" height="50" rx="6" fill="white" opacity="0.9" />
+      {/* 인물 — 머리 */}
+      <circle cx="31" cy="33" r="7" fill={color} opacity="0.75" />
+      {/* 몸통 */}
+      <path d="M22 48 Q22 42 31 42 Q40 42 40 48 L38 60 L24 60 Z" fill={color} opacity="0.5" />
+      {/* 휠체어 바퀴 */}
+      <circle cx="31" cy="60" r="7" fill="none" stroke={color} strokeWidth="2.5" opacity="0.7" />
+      <circle cx="31" cy="60" r="2" fill={color} opacity="0.5" />
+      {/* 팔 */}
+      <path d="M34 48 Q40 50 44 55" stroke={color} strokeWidth="2.5" strokeLinecap="round" fill="none" opacity="0.6" />
+      {/* 오른쪽 카드 스택 */}
+      <rect x="60" y="22" width="54" height="22" rx="4" fill="white" opacity="0.92" />
+      <rect x="66" y="27" width="18" height="12" rx="3" fill={color} opacity="0.15" />
+      <circle cx="75" cy="33" r="4" fill={color} opacity="0.4" />
+      <rect x="90" y="29" width="18" height="3" rx="1.5" fill={color} opacity="0.4" />
+      <rect x="90" y="34" width="12" height="2.5" rx="1.25" fill={color} opacity="0.18" />
+      <rect x="60" y="48" width="54" height="11" rx="4" fill="white" opacity="0.92" />
+      <rect x="66" y="51.5" width="42" height="4" rx="2" fill={color} opacity="0.12" />
+      <rect x="66" y="51.5" width="32" height="4" rx="2" fill={color} opacity="0.55" />
+      <rect x="60" y="63" width="54" height="9" rx="4" fill={color} opacity="0.85" />
+      <rect x="70" y="66" width="34" height="3" rx="1.5" fill="white" opacity="0.5" />
+    </svg>
+  )
+}
+
+/* ── 기본 폴백 ──────────────────────────────────────────────────────────── */
 export function SVGDefault({ color = '#6b7280' }) {
   return (
     <svg viewBox="0 0 120 90" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ width: '100%', height: '100%' }}>
-      <rect width="120" height="90" fill="#f9fafb" />
-      <rect width="120" height="18" fill={color} />
-      <rect x="6" y="24" width="108" height="20" rx="4" fill="white" />
-      <rect x="12" y="30" width="60" height="4" rx="2" fill={color} opacity="0.4" />
-      <rect x="12" y="37" width="40" height="3" rx="1.5" fill="#e5e7eb" />
-      <rect x="6" y="50" width="50" height="32" rx="4" fill="white" />
-      <rect x="62" y="50" width="56" height="32" rx="4" fill="white" />
-      <rect x="12" y="58" width="36" height="4" rx="2" fill={color} opacity="0.3" />
-      <rect x="12" y="65" width="25" height="3" rx="1.5" fill="#e5e7eb" />
-      <rect x="68" y="58" width="42" height="4" rx="2" fill={color} opacity="0.3" />
-      <rect x="68" y="65" width="30" height="3" rx="1.5" fill="#e5e7eb" />
+      <rect width="120" height="90" fill={`${color}0d`} />
+      {/* 헤더 */}
+      <rect width="120" height="18" fill={color} opacity="0.7" />
+      <circle cx="12" cy="9" r="4.5" fill="white" opacity="0.2" />
+      <rect x="22" y="7" width="38" height="4" rx="2" fill="white" opacity="0.45" />
+      <rect x="22" y="13" width="22" height="2.5" rx="1.25" fill="white" opacity="0.2" />
+      <rect x="94" y="7" width="20" height="7" rx="2" fill="white" opacity="0.15" />
+      {/* 메인 카드 */}
+      <rect x="6" y="22" width="108" height="22" rx="4" fill="white" opacity="0.88" />
+      <rect x="12" y="28" width="52" height="5" rx="2.5" fill={color} opacity="0.35" />
+      <rect x="12" y="35.5" width="36" height="3" rx="1.5" fill={color} opacity="0.15" />
+      {/* 두 칼럼 카드 */}
+      <rect x="6" y="48" width="52" height="34" rx="4" fill="white" opacity="0.88" />
+      <rect x="62" y="48" width="52" height="34" rx="4" fill="white" opacity="0.88" />
+      {/* 왼쪽 카드 내용 */}
+      <circle cx="22" cy="60" r="8" fill={color} opacity="0.12" />
+      <circle cx="22" cy="60" r="5" fill={color} opacity="0.25" />
+      <rect x="12" y="70" width="38" height="3.5" rx="1.75" fill={color} opacity="0.25" />
+      <rect x="12" y="75.5" width="26" height="3" rx="1.5" fill={color} opacity="0.12" />
+      {/* 오른쪽 카드 내용 */}
+      <rect x="68" y="54" width="40" height="4" rx="2" fill={color} opacity="0.3" />
+      <rect x="68" y="61" width="40" height="3.5" rx="1.75" fill={color} opacity="0.12" />
+      <rect x="68" y="67.5" width="28" height="3" rx="1.5" fill={color} opacity="0.08" />
+      <rect x="68" y="73" width="36" height="5" rx="2" fill={color} opacity="0.55" />
     </svg>
   )
 }
 
-/* ── 테마 → SVG 컴포넌트 매핑 ─────────────────────────────────────── */
+/* ── 테마 → SVG 매핑 ────────────────────────────────────────────────────── */
 export const THEME_SVG_MAP = {
   'Disease Prevention': SVGDiseasePreventionMap,
   'Mental Health':      SVGMentalHealthTracker,
   'Nutrition':          SVGNutritionTracker,
   'Elderly Care':       SVGElderCare,
   'Fitness':            SVGFitness,
+  'Maternal Health':    SVGMaternalHealth,
+  'Disability':         SVGDisability,
 }
 
 export const THEME_COLORS = {
