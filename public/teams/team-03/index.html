@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>운동어디 — 운동 시설 지도</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'Apple SD Gothic Neo',sans-serif;background:#f0fdf4;min-height:100vh;display:flex;flex-direction:column}
+  header{background:#22c55e;padding:16px 24px;display:flex;align-items:center;justify-content:space-between}
+  .logo{font-size:20px;font-weight:800;color:#fff}
+  .badge{font-size:11px;background:rgba(255,255,255,0.2);color:#fff;padding:4px 10px;border-radius:999px}
+  .search-bar{background:#fff;margin:16px;border-radius:12px;display:flex;align-items:center;padding:10px 14px;gap:10px;box-shadow:0 2px 8px rgba(0,0,0,0.06)}
+  .search-bar input{flex:1;border:none;outline:none;font-size:14px;color:#374151}
+  .search-bar .icon{color:#9ca3af;font-size:16px}
+  .map-area{margin:0 16px;border-radius:16px;overflow:hidden;height:200px;background:linear-gradient(135deg,#bbf7d0,#d1fae5);position:relative;display:flex;align-items:center;justify-content:center}
+  .map-grid{position:absolute;inset:0;opacity:0.15}
+  .map-grid line{stroke:#22c55e}
+  .pin{position:absolute;display:flex;flex-direction:column;align-items:center;gap:2px}
+  .pin-circle{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;box-shadow:0 2px 8px rgba(0,0,0,0.15)}
+  .pin-label{font-size:9px;font-weight:700;background:#fff;padding:2px 6px;border-radius:4px;box-shadow:0 1px 4px rgba(0,0,0,0.1);white-space:nowrap;color:#374151}
+  .section-title{font-size:13px;font-weight:700;color:#111;margin:16px 16px 10px}
+  .filter-row{display:flex;gap:8px;padding:0 16px;overflow-x:auto;padding-bottom:4px}
+  .filter-btn{white-space:nowrap;font-size:12px;font-weight:600;padding:6px 14px;border-radius:999px;border:1.5px solid #e5e7eb;background:#fff;color:#6b7280;cursor:pointer}
+  .filter-btn.active{background:#22c55e;border-color:#22c55e;color:#fff}
+  .facility-list{display:flex;flex-direction:column;gap:0;margin:0 16px}
+  .facility-item{display:flex;align-items:center;gap:14px;padding:14px 0;border-bottom:1px solid #f3f4f6}
+  .facility-item:last-child{border-bottom:none}
+  .facility-icon{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0}
+  .facility-name{font-size:14px;font-weight:600;color:#111}
+  .facility-meta{font-size:12px;color:#9ca3af;margin-top:2px}
+  .stars{color:#fbbf24;font-size:12px}
+  .dist{background:#f3f4f6;border-radius:999px;font-size:11px;font-weight:600;color:#6b7280;padding:3px 8px}
+  nav{display:flex;background:#fff;border-top:1px solid #f3f4f6;padding:10px 0;margin-top:auto}
+  nav a{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;font-size:10px;color:#9ca3af;text-decoration:none}
+  nav a.active{color:#22c55e}
+  nav .icon{font-size:20px}
+  .pilot-banner{background:#dcfce7;border-top:1px solid #bbf7d0;padding:8px 16px;text-align:center;font-size:11px;color:#166534}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">운동어디 📍</div>
+  <span class="badge">team-3</span>
+</header>
+
+<div class="search-bar">
+  <span class="icon">🔍</span>
+  <input type="text" placeholder="시설명, 종목 검색…" />
+</div>
+
+<div class="map-area">
+  <svg class="map-grid" viewBox="0 0 100 100" preserveAspectRatio="none" style="position:absolute;inset:0;width:100%;height:100%">
+    <line x1="20" y1="0" x2="20" y2="100"/><line x1="40" y1="0" x2="40" y2="100"/>
+    <line x1="60" y1="0" x2="60" y2="100"/><line x1="80" y1="0" x2="80" y2="100"/>
+    <line x1="0" y1="25" x2="100" y2="25"/><line x1="0" y1="50" x2="100" y2="50"/><line x1="0" y1="75" x2="100" y2="75"/>
+  </svg>
+  <div class="pin" style="top:30px;left:90px"><div class="pin-circle" style="background:#22c55e">🏋️</div><div class="pin-label">헬스장</div></div>
+  <div class="pin" style="top:80px;left:170px"><div class="pin-circle" style="background:#3b82f6">🏊</div><div class="pin-label">수영장</div></div>
+  <div class="pin" style="top:50px;left:230px"><div class="pin-circle" style="background:#f59e0b">⚽</div><div class="pin-label">풋살장</div></div>
+</div>
+
+<div class="filter-row">
+  <button class="filter-btn active">전체</button>
+  <button class="filter-btn">헬스장</button>
+  <button class="filter-btn">수영장</button>
+  <button class="filter-btn">풋살장</button>
+  <button class="filter-btn">테니스</button>
+</div>
+
+<div class="section-title">내 주변 시설</div>
+<div class="facility-list">
+  <div class="facility-item">
+    <div class="facility-icon" style="background:#dcfce7">🏋️</div>
+    <div style="flex:1">
+      <div class="facility-name">그린 헬스클럽</div>
+      <div class="facility-meta"><span class="stars">★★★★</span> 4.2 · 헬스장</div>
+    </div>
+    <span class="dist">0.3km</span>
+  </div>
+  <div class="facility-item">
+    <div class="facility-icon" style="background:#dbeafe">🏊</div>
+    <div style="flex:1">
+      <div class="facility-name">구민 수영장</div>
+      <div class="facility-meta"><span class="stars">★★★★★</span> 4.8 · 수영</div>
+    </div>
+    <span class="dist">0.7km</span>
+  </div>
+  <div class="facility-item">
+    <div class="facility-icon" style="background:#fef9c3">⚽</div>
+    <div style="flex:1">
+      <div class="facility-name">스타 풋살파크</div>
+      <div class="facility-meta"><span class="stars">★★★★</span> 4.0 · 풋살</div>
+    </div>
+    <span class="dist">1.2km</span>
+  </div>
+</div>
+
+<nav>
+  <a href="#"><span class="icon">🗺️</span>지도</a>
+  <a href="#" class="active"><span class="icon">🏃</span>시설</a>
+  <a href="#"><span class="icon">⭐</span>즐겨찾기</a>
+  <a href="#"><span class="icon">👤</span>프로필</a>
+</nav>
+<div class="pilot-banner">파일럿 산출물 — team-3 · 운동어디 | 기획: 이진훤 · 개발: 장재영</div>
+</body>
+</html>

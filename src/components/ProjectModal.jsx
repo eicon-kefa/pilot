@@ -14,7 +14,7 @@ const THEME_COLORS = {
   'Other': '#6b7280',
 }
 
-export default function ProjectModal({ project, onClose }) {
+export default function ProjectModal({ project, onClose, onPreview }) {
   const { lang } = useLang()
   const tx = translations[lang].modal
 
@@ -78,8 +78,16 @@ export default function ProjectModal({ project, onClose }) {
 
           {/* CTA buttons */}
           <div className={styles.ctas}>
+            {project.htmlPath && (
+              <button
+                className="btn-primary"
+                onClick={() => { onClose(); onPreview(project) }}
+              >
+                {lang === 'ko' ? '앱 미리보기' : 'Preview App'}
+              </button>
+            )}
             {project.deployUrl && (
-              <a href={project.deployUrl} target="_blank" rel="noopener noreferrer" className="btn-primary">
+              <a href={project.deployUrl} target="_blank" rel="noopener noreferrer" className="btn-secondary">
                 {tx.viewApp}
               </a>
             )}

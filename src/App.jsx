@@ -6,6 +6,7 @@ import Hero from './components/Hero'
 import FilterBar from './components/FilterBar'
 import ProjectGallery from './components/ProjectGallery'
 import ProjectModal from './components/ProjectModal'
+import AppPreview from './components/AppPreview'
 import Footer from './components/Footer'
 import styles from './App.module.css'
 
@@ -14,6 +15,7 @@ function AppInner() {
   const [selectedTheme, setSelectedTheme] = useState('')
   const [searchQuery, setSearchQuery] = useState('')
   const [selectedProject, setSelectedProject] = useState(null)
+  const [previewProject, setPreviewProject] = useState(null)
 
   const filtered = useMemo(() => {
     const q = searchQuery.toLowerCase().trim()
@@ -64,6 +66,14 @@ function AppInner() {
         <ProjectModal
           project={selectedProject}
           onClose={() => setSelectedProject(null)}
+          onPreview={(p) => { setSelectedProject(null); setPreviewProject(p) }}
+        />
+      )}
+
+      {previewProject && (
+        <AppPreview
+          project={previewProject}
+          onClose={() => setPreviewProject(null)}
         />
       )}
     </>

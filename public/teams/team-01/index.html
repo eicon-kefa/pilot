@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>먹보 — 청소년 식습관 관리</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'Apple SD Gothic Neo',sans-serif;background:#fff7ed;min-height:100vh;display:flex;flex-direction:column}
+  header{background:#fb923c;padding:16px 24px;display:flex;align-items:center;justify-content:space-between}
+  .logo{font-size:22px;font-weight:800;color:#fff;letter-spacing:-0.03em}
+  .badge{font-size:11px;background:rgba(255,255,255,0.2);color:#fff;padding:4px 10px;border-radius:999px}
+  main{flex:1;padding:24px;display:flex;flex-direction:column;gap:16px}
+  .card{background:#fff;border-radius:16px;padding:20px;box-shadow:0 2px 12px rgba(251,146,60,0.1)}
+  .card-title{font-size:12px;font-weight:600;color:#9ca3af;letter-spacing:.05em;text-transform:uppercase;margin-bottom:12px}
+  .checklist{display:flex;flex-direction:column;gap:10px}
+  .item{display:flex;align-items:center;gap:12px;font-size:14px;color:#374151}
+  .check{width:22px;height:22px;border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:13px}
+  .done{background:#fb923c;color:#fff}
+  .todo{background:#f3f4f6;color:#9ca3af}
+  .meals{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+  .meal{background:#fff7ed;border-radius:12px;padding:14px;text-align:center}
+  .meal-icon{font-size:24px;margin-bottom:6px}
+  .meal-name{font-size:12px;font-weight:600;color:#374151}
+  .meal-cal{font-size:11px;color:#9ca3af;margin-top:2px}
+  .macro-bar{margin-top:8px}
+  .macro-label{display:flex;justify-content:space-between;font-size:11px;color:#6b7280;margin-bottom:4px}
+  .bar-track{height:8px;background:#f3f4f6;border-radius:4px;overflow:hidden}
+  .bar-fill{height:100%;border-radius:4px}
+  .tag{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;color:#fb923c;background:#fff7ed;border:1px solid #fed7aa;border-radius:999px;padding:4px 12px;margin-bottom:8px}
+  .dot{width:6px;height:6px;border-radius:50%;background:#fb923c}
+  nav{display:flex;background:#fff;border-top:1px solid #f3f4f6;padding:10px 0}
+  nav a{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;font-size:10px;color:#9ca3af;text-decoration:none}
+  nav a.active{color:#fb923c}
+  nav .icon{font-size:20px}
+  .pilot-banner{background:#fef9c3;border-top:1px solid #fde68a;padding:8px 16px;text-align:center;font-size:11px;color:#92400e}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">먹보 🍱</div>
+  <span class="badge">team-01</span>
+</header>
+<main>
+  <div class="tag"><span class="dot"></span>오늘의 식습관</div>
+
+  <div class="card">
+    <div class="card-title">오늘 먹은 것</div>
+    <div class="meals">
+      <div class="meal">
+        <div class="meal-icon">🥗</div>
+        <div class="meal-name">아침</div>
+        <div class="meal-cal">420 kcal</div>
+      </div>
+      <div class="meal">
+        <div class="meal-icon">🍱</div>
+        <div class="meal-name">점심</div>
+        <div class="meal-cal">680 kcal</div>
+      </div>
+      <div class="meal" style="border:2px dashed #fed7aa">
+        <div class="meal-icon" style="opacity:0.3">+</div>
+        <div class="meal-name" style="color:#fb923c">저녁 추가</div>
+        <div class="meal-cal"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">오늘의 영양 균형</div>
+    <div class="macro-bar">
+      <div class="macro-label"><span>탄수화물</span><span>65%</span></div>
+      <div class="bar-track"><div class="bar-fill" style="width:65%;background:#fb923c"></div></div>
+    </div>
+    <div class="macro-bar" style="margin-top:10px">
+      <div class="macro-label"><span>단백질</span><span>22%</span></div>
+      <div class="bar-track"><div class="bar-fill" style="width:22%;background:#34d399"></div></div>
+    </div>
+    <div class="macro-bar" style="margin-top:10px">
+      <div class="macro-label"><span>지방</span><span>13%</span></div>
+      <div class="bar-track"><div class="bar-fill" style="width:13%;background:#8b5cf6"></div></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">오늘의 개선 포인트</div>
+    <div class="checklist">
+      <div class="item"><span class="check done">✓</span>아침 식사 챙기기</div>
+      <div class="item"><span class="check done">✓</span>채소 반찬 포함하기</div>
+      <div class="item"><span class="check todo">○</span>저녁 단백질 보충하기</div>
+      <div class="item"><span class="check todo">○</span>야식 줄이기</div>
+    </div>
+  </div>
+</main>
+<nav>
+  <a href="#" class="active"><span class="icon">🏠</span>홈</a>
+  <a href="#"><span class="icon">📝</span>기록</a>
+  <a href="#"><span class="icon">💡</span>추천</a>
+  <a href="#"><span class="icon">👤</span>내 정보</a>
+</nav>
+<div class="pilot-banner">파일럿 산출물 — team-01 · 먹보 | 기획: 김아인 · 디자인: 박성빈 · 개발: 한승재, 이수민</div>
+</body>
+</html>

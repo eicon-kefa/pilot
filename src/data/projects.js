@@ -33,6 +33,9 @@
  *   thumbnail       — 썸네일 이미지 경로 (없으면 "")
  *                     예: "/images/team01-먹보.png"
  *                     이미지 파일은 public/images/ 폴더에 넣어야 합니다.
+ *   htmlPath        — 팀 앱 HTML 경로 (없으면 "")
+ *                     예: "/teams/team-01/index.html"
+ *                     팀 파일은 public/teams/team-01/ 폴더에 통째로 넣어야 합니다.
  *
  * ─── 파일럿 v1 — 2026 e-ICON 파일럿 실제 팀 데이터 ───────────────────────
  */
@@ -76,6 +79,7 @@ export const projects = [
     deployUrl: "",
     githubUrl: "",
     thumbnail: "",
+    htmlPath: "/teams/team-01/index.html",
   },
 
   // ─── TEAM 02 — eaaty ──────────────────────────────────────────────────────
@@ -114,6 +118,7 @@ export const projects = [
     deployUrl: "",
     githubUrl: "",
     thumbnail: "",
+    htmlPath: "/teams/team-02/index.html",
   },
 
   // ─── TEAM 03 — 운동어디 ───────────────────────────────────────────────────
@@ -152,6 +157,7 @@ export const projects = [
     deployUrl: "",
     githubUrl: "",
     thumbnail: "",
+    htmlPath: "/teams/team-03/index.html",
   },
 
   // ─── TEAM 04 — sleeplog ───────────────────────────────────────────────────
@@ -192,6 +198,7 @@ export const projects = [
     deployUrl: "",
     githubUrl: "",
     thumbnail: "",
+    htmlPath: "/teams/team-04/index.html",
   },
 
   // ─── TEAM 05 — Well-being Butler ──────────────────────────────────────────
@@ -230,6 +237,7 @@ export const projects = [
     deployUrl: "",
     githubUrl: "",
     thumbnail: "",
+    htmlPath: "/teams/team-05/index.html",
   },
 
   // ─── TEAM 06 — 핏밀 (FitMeal) ─────────────────────────────────────────────
@@ -268,6 +276,7 @@ export const projects = [
     deployUrl: "",
     githubUrl: "",
     thumbnail: "",
+    htmlPath: "/teams/team-06/index.html",
   },
 ]
 
