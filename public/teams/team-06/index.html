@@ -1,109 +1,410 @@
+<!-- 파일명: fitmeal_team.html -->
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>핏밀(FitMeal) — 맞춤 운동·식단</title>
-<style>
-  *{margin:0;padding:0;box-sizing:border-box}
-  body{font-family:'Apple SD Gothic Neo',sans-serif;background:#f0fdf4;min-height:100vh;display:flex;flex-direction:column}
-  header{background:linear-gradient(135deg,#16a34a,#15803d);padding:16px 20px;display:flex;align-items:center;justify-content:space-between}
-  .logo{font-size:20px;font-weight:800;color:#fff;letter-spacing:-0.02em}
-  .badge{font-size:11px;background:rgba(255,255,255,0.2);color:#fff;padding:4px 10px;border-radius:999px}
-  main{flex:1;padding:16px;display:flex;flex-direction:column;gap:14px}
-  .profile-card{background:#fff;border-radius:16px;padding:18px;display:flex;align-items:center;gap:14px;box-shadow:0 2px 8px rgba(22,163,74,0.08)}
-  .profile-avatar{width:54px;height:54px;border-radius:50%;background:linear-gradient(135deg,#86efac,#4ade80);display:flex;align-items:center;justify-content:center;font-size:26px;flex-shrink:0}
-  .profile-name{font-size:16px;font-weight:700;color:#111}
-  .profile-meta{font-size:12px;color:#9ca3af;margin-top:2px}
-  .profile-tags{display:flex;gap:6px;margin-top:8px}
-  .tag{font-size:11px;font-weight:600;padding:3px 10px;border-radius:999px}
-  .ring-card{background:#fff;border-radius:16px;padding:18px;display:flex;align-items:center;gap:20px;box-shadow:0 2px 8px rgba(22,163,74,0.08)}
-  .ring-wrap{position:relative;width:90px;height:90px;flex-shrink:0}
-  svg.ring{width:90px;height:90px;transform:rotate(-90deg)}
-  .ring-center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
-  .ring-pct{font-size:22px;font-weight:800;color:#111}
-  .ring-label{font-size:10px;color:#9ca3af}
-  .workout-list{flex:1;display:flex;flex-direction:column;gap:8px}
-  .workout-item{display:flex;align-items:center;gap:10px;font-size:13px;color:#374151}
-  .w-check{width:22px;height:22px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0}
-  .done{background:#16a34a;color:#fff}
-  .todo{background:#f3f4f6;color:#9ca3af}
-  .meal-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-  .meal-card{background:#fff;border-radius:14px;padding:14px;box-shadow:0 2px 8px rgba(22,163,74,0.06)}
-  .meal-header{display:flex;align-items:center;gap:8px;margin-bottom:10px}
-  .meal-icon{font-size:20px}
-  .meal-title{font-size:13px;font-weight:700;color:#111}
-  .meal-item{font-size:12px;color:#6b7280;padding:4px 0;border-bottom:1px solid #f3f4f6;display:flex;justify-content:space-between}
-  .meal-item:last-child{border-bottom:none}
-  .meal-cal{color:#16a34a;font-weight:600}
-  .cta-btn{background:linear-gradient(135deg,#16a34a,#15803d);color:#fff;border-radius:14px;padding:15px;text-align:center;font-size:15px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px}
-  nav{display:flex;background:#fff;border-top:1px solid #f3f4f6;padding:10px 0}
-  nav a{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;font-size:10px;color:#9ca3af;text-decoration:none}
-  nav a.active{color:#16a34a}
-  nav .icon{font-size:20px}
-  .pilot-banner{background:#dcfce7;border-top:1px solid #bbf7d0;padding:8px 16px;text-align:center;font-size:11px;color:#166534}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>핏밀(FitMeal)</title>
+
+  <style>
+    /* 전체 페이지 기본 설정 */
+    *{
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Pretendard", sans-serif;
+    }
+
+    body{
+      background: #f3fff5;
+      color: #333;
+    }
+
+    /* 앱 전체 영역 */
+    .container{
+      width: 90%;
+      max-width: 500px;
+      margin: auto;
+      padding-bottom: 50px;
+    }
+
+    /* 공통 카드 디자인 */
+    .card{
+      background: white;
+      border-radius: 20px;
+      padding: 25px;
+      margin-top: 25px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    /* 제목 */
+    h1{
+      text-align: center;
+      color: #2f9e44;
+      margin-top: 20px;
+      font-size: 35px;
+    }
+
+    h2{
+      margin-bottom: 15px;
+      color: #2f9e44;
+    }
+
+    p{
+      margin-bottom: 15px;
+      line-height: 1.5;
+    }
+
+    /* 입력창 */
+    input{
+      width: 100%;
+      padding: 10px;
+      margin-top: 8px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+    }
+
+    /* 버튼 */
+    button{
+      width: 100%;
+      padding: 12px;
+      background: #51cf66;
+      border: none;
+      border-radius: 12px;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    button:hover{
+      background: #37b24d;
+    }
+
+    /* 운동 추천 박스 */
+    .recommend-box{
+      background: #f1fff3;
+      padding: 15px;
+      border-radius: 15px;
+      margin-top: 10px;
+    }
+
+    /* 체크박스 영역 */
+    .check-area{
+      margin-top: 15px;
+    }
+
+    /* 하단 메뉴 */
+    .menu{
+      display: flex;
+      justify-content: space-around;
+      margin-top: 20px;
+      padding-top: 10px;
+      border-top: 1px solid #ddd;
+      color: #2f9e44;
+      font-weight: bold;
+    }
+
+    /* 알림 텍스트 */
+    .alarm{
+      background: #fff3bf;
+      padding: 10px;
+      border-radius: 10px;
+      margin-top: 15px;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    /* 숨기기 */
+    .hidden{
+      display: none;
+    }
+
+  </style>
 </head>
 <body>
-<header>
-  <div class="logo">핏밀 FitMeal 🥗</div>
-  <span class="badge">team-6</span>
-</header>
-<main>
-  <div class="profile-card">
-    <div class="profile-avatar">🏃</div>
-    <div>
-      <div class="profile-name">나의 핏밀 프로필</div>
-      <div class="profile-meta">키 172cm · 몸무게 65kg · 목표: 체지방 감소</div>
-      <div class="profile-tags">
-        <span class="tag" style="background:#dcfce7;color:#166534">슬림형</span>
-        <span class="tag" style="background:#dbeafe;color:#1e40af">중급자</span>
-        <span class="tag" style="background:#fef9c3;color:#92400e">홈 운동</span>
+
+  <div class="container">
+
+    <!-- 앱 제목 -->
+    <h1>FitMeal</h1>
+
+    <!-- 시작 화면 -->
+    <div class="card">
+      <h2>건강한 습관 시작</h2>
+      <p>
+        청소년의 운동부족과 식습관 개선을 위한 앱
+      </p>
+
+      <button onclick="showLogin()">
+        시작하기
+      </button>
+    </div>
+
+    <!-- 로그인 화면 -->
+    <div class="card hidden" id="loginPage">
+
+      <h2>로그인</h2>
+
+      <!-- 아이디 입력 -->
+      <input type="text" placeholder="아이디 입력">
+
+      <!-- 비밀번호 입력 -->
+      <input type="password" placeholder="비밀번호 입력">
+
+      <button onclick="showInfoPage()">로그인</button>
+
+      <button>회원가입 하기</button>
+    </div>
+
+    <!-- 기본 정보 입력 -->
+    <div class="card hidden" id="infoPage">
+
+      <h2>기본 정보 입력</h2>
+
+      <!-- 키 입력 -->
+      <label>키(cm)</label>
+      <input type="number" id="height">
+
+      <!-- 몸무게 입력 -->
+      <label>몸무게(kg)</label>
+      <input type="number" id="weight">
+
+      <!-- 목표 키 -->
+      <label>목표 몸무게(kg)</label>
+      <input type="number" id="goalWeight">
+
+      <!-- 나이 입력 -->
+      <label>나이</label>
+      <input type="number" id="age">
+
+      <!-- 목표 선택 -->
+      <h3>목표 선택</h3>
+
+      <input type="radio" name="goal" value="체력 증가"> 체력 증가<br><br>
+      <input type="radio" name="goal" value="체중 감량"> 체중 감량<br><br>
+      <input type="radio" name="goal" value="근육 증가"> 근육 증가<br><br>
+
+      <button onclick="showMainPage()">
+        완료
+      </button>
+    </div>
+
+    <!-- 메인 홈 화면 -->
+    <div class="card hidden" id="mainPage">
+
+      <h2 id="welcomeText">
+        안녕하세요!
+      </h2>
+
+      <p>오늘도 운동해볼까요?</p>
+
+      <!-- 운동 추천 -->
+      <div class="recommend-box">
+
+        <h3>오늘의 운동 추천</h3>
+
+        <ul id="exerciseList">
+          <li>스쿼트 15회</li>
+          <li>걷기 30분</li>
+        </ul>
+
       </div>
+
+      <!-- 식단 추천 -->
+      <div class="recommend-box">
+
+        <h3>오늘의 식단</h3>
+
+        <p id="dietText">
+          닭가슴살 샐러드
+        </p>
+
+      </div>
+
+      <!-- 운동 체크 -->
+      <div class="check-area">
+
+        <h3>운동 체크하기</h3>
+
+        <input type="checkbox" id="checkExercise">
+        <label for="checkExercise">운동 완료</label>
+
+      </div>
+
+      <!-- 운동 알림 -->
+      <div class="alarm" id="alarmBox">
+        오후 6시에 운동할 시간입니다!
+      </div>
+
+      <!-- 운동 추천 상세 -->
+      <div class="recommend-box">
+
+        <h3>추천 운동</h3>
+
+        <p id="detailExercise">
+          플랭크 1분<br>
+          런닝 20분<br>
+          스쿼트 20회
+        </p>
+
+        <p>난이도 : ★★★☆☆</p>
+
+        <button onclick="startExercise()">
+          운동 시작
+        </button>
+
+      </div>
+
+      <!-- 식단 상세 -->
+      <div class="recommend-box">
+
+        <h3>오늘의 식단</h3>
+
+        <p>
+          아침 : 바나나 + 우유
+        </p>
+
+        <p>
+          점심 : 현미밥 + 닭가슴살
+        </p>
+
+        <p>
+          저녁 : 샐러드 + 계란
+        </p>
+
+        <button onclick="changeDiet()">
+          다른 식단 보기
+        </button>
+
+      </div>
+
+      <!-- 하단 메뉴 -->
+      <div class="menu">
+        <div>홈</div>
+        <div>기록</div>
+        <div>설정</div>
+      </div>
+
     </div>
+
   </div>
 
-  <div class="ring-card">
-    <div class="ring-wrap">
-      <svg class="ring" viewBox="0 0 90 90">
-        <circle cx="45" cy="45" r="36" fill="none" stroke="#f3f4f6" stroke-width="10"/>
-        <circle cx="45" cy="45" r="36" fill="none" stroke="#16a34a" stroke-width="10"
-          stroke-dasharray="150 76" stroke-linecap="round"/>
-      </svg>
-      <div class="ring-center"><div class="ring-pct">65%</div><div class="ring-label">달성</div></div>
-    </div>
-    <div class="workout-list">
-      <div style="font-size:12px;font-weight:700;color:#9ca3af;margin-bottom:2px">오늘의 운동</div>
-      <div class="workout-item"><span class="w-check done">✓</span>스트레칭 10분</div>
-      <div class="workout-item"><span class="w-check done">✓</span>스쿼트 3세트</div>
-      <div class="workout-item"><span class="w-check todo">○</span>플랭크 1분 × 3</div>
-      <div class="workout-item"><span class="w-check todo">○</span>유산소 20분</div>
-    </div>
-  </div>
+  <script>
 
-  <div class="meal-row">
-    <div class="meal-card">
-      <div class="meal-header"><span class="meal-icon">🌅</span><span class="meal-title">아침 추천</span></div>
-      <div class="meal-item">귀리 + 바나나<span class="meal-cal">340</span></div>
-      <div class="meal-item">삶은 달걀 2개<span class="meal-cal">140</span></div>
-      <div class="meal-item">저지방 우유<span class="meal-cal">80</span></div>
-    </div>
-    <div class="meal-card">
-      <div class="meal-header"><span class="meal-icon">🌇</span><span class="meal-title">저녁 추천</span></div>
-      <div class="meal-item">닭가슴살 구이<span class="meal-cal">200</span></div>
-      <div class="meal-item">현미밥 반공기<span class="meal-cal">160</span></div>
-      <div class="meal-item">나물 반찬<span class="meal-cal">60</span></div>
-    </div>
-  </div>
+    // 로그인 화면 보이기
+    function showLogin(){
 
-  <div class="cta-btn">💪 다음 운동 시작하기</div>
-</main>
-<nav>
-  <a href="#" class="active"><span class="icon">🏠</span>홈</a>
-  <a href="#"><span class="icon">🏋️</span>운동</a>
-  <a href="#"><span class="icon">🥗</span>식단</a>
-  <a href="#"><span class="icon">📊</span>기록</a>
-</nav>
-<div class="pilot-banner">파일럿 산출물 — team-6 · 핏밀(FitMeal) | 기획: 조은혁 · 디자인: 이예준 · 개발: 류하진</div>
+      document.getElementById("loginPage").classList.remove("hidden");
+
+    }
+
+    // 정보 입력 화면 보이기
+    function showInfoPage(){
+
+      document.getElementById("infoPage").classList.remove("hidden");
+
+    }
+
+    // 메인 화면 보이기
+    function showMainPage(){
+
+      // 키와 몸무게 가져오기
+      let height = document.getElementById("height").value;
+      let weight = document.getElementById("weight").value;
+
+      // 목표 가져오기
+      let goal = document.querySelector('input[name="goal"]:checked');
+
+      // 목표 선택 안했을 때
+      if(goal == null){
+
+        alert("목표를 선택해주세요!");
+        return;
+      }
+
+      // 메인 화면 표시
+      document.getElementById("mainPage").classList.remove("hidden");
+
+      // 환영 문구 변경
+      document.getElementById("welcomeText").innerHTML =
+        "안녕하세요! FitMeal 사용자님";
+
+      // 운동 추천 변경
+      let exerciseHTML = "";
+
+      // 목표에 따라 운동 추천
+      if(goal.value == "체중 감량"){
+
+        exerciseHTML =
+          "<li>런닝 30분</li>" +
+          "<li>줄넘기 100회</li>" +
+          "<li>걷기 20분</li>";
+
+      }
+
+      else if(goal.value == "근육 증가"){
+
+        exerciseHTML =
+          "<li>푸쉬업 20회</li>" +
+          "<li>스쿼트 30회</li>" +
+          "<li>플랭크 1분</li>";
+
+      }
+
+      else{
+
+        exerciseHTML =
+          "<li>스트레칭 10분</li>" +
+          "<li>걷기 20분</li>" +
+          "<li>플랭크 30초</li>";
+
+      }
+
+      // 운동 추천 출력
+      document.getElementById("exerciseList").innerHTML =
+        exerciseHTML;
+
+    }
+
+    // 운동 시작 버튼
+    function startExercise(){
+
+      alert("운동을 시작합니다! 💪");
+
+    }
+
+    // 식단 바꾸기 기능
+    function changeDiet(){
+
+      // 식단 목록 배열
+      let diets = [
+        "고구마 + 닭가슴살",
+        "현미밥 + 샐러드",
+        "바나나 + 삶은 계란",
+        "연어 샐러드",
+        "과일 + 요거트"
+      ];
+
+      // 랜덤 식단 선택
+      let randomDiet =
+        diets[Math.floor(Math.random() * diets.length)];
+
+      // 식단 출력
+      document.getElementById("dietText").innerHTML =
+        randomDiet;
+
+    }
+
+    // 5초 후 운동 알림 띄우기
+    setTimeout(function(){
+
+      alert("운동할 시간입니다! 🏃");
+
+    }, 5000);
+
+  </script>
+
 </body>
 </html>

@@ -1,102 +1,289 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>먹보 — 청소년 식습관 관리</title>
-<style>
-  *{margin:0;padding:0;box-sizing:border-box}
-  body{font-family:'Apple SD Gothic Neo',sans-serif;background:#fff7ed;min-height:100vh;display:flex;flex-direction:column}
-  header{background:#fb923c;padding:16px 24px;display:flex;align-items:center;justify-content:space-between}
-  .logo{font-size:22px;font-weight:800;color:#fff;letter-spacing:-0.03em}
-  .badge{font-size:11px;background:rgba(255,255,255,0.2);color:#fff;padding:4px 10px;border-radius:999px}
-  main{flex:1;padding:24px;display:flex;flex-direction:column;gap:16px}
-  .card{background:#fff;border-radius:16px;padding:20px;box-shadow:0 2px 12px rgba(251,146,60,0.1)}
-  .card-title{font-size:12px;font-weight:600;color:#9ca3af;letter-spacing:.05em;text-transform:uppercase;margin-bottom:12px}
-  .checklist{display:flex;flex-direction:column;gap:10px}
-  .item{display:flex;align-items:center;gap:12px;font-size:14px;color:#374151}
-  .check{width:22px;height:22px;border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:13px}
-  .done{background:#fb923c;color:#fff}
-  .todo{background:#f3f4f6;color:#9ca3af}
-  .meals{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
-  .meal{background:#fff7ed;border-radius:12px;padding:14px;text-align:center}
-  .meal-icon{font-size:24px;margin-bottom:6px}
-  .meal-name{font-size:12px;font-weight:600;color:#374151}
-  .meal-cal{font-size:11px;color:#9ca3af;margin-top:2px}
-  .macro-bar{margin-top:8px}
-  .macro-label{display:flex;justify-content:space-between;font-size:11px;color:#6b7280;margin-bottom:4px}
-  .bar-track{height:8px;background:#f3f4f6;border-radius:4px;overflow:hidden}
-  .bar-fill{height:100%;border-radius:4px}
-  .tag{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;color:#fb923c;background:#fff7ed;border:1px solid #fed7aa;border-radius:999px;padding:4px 12px;margin-bottom:8px}
-  .dot{width:6px;height:6px;border-radius:50%;background:#fb923c}
-  nav{display:flex;background:#fff;border-top:1px solid #f3f4f6;padding:10px 0}
-  nav a{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;font-size:10px;color:#9ca3af;text-decoration:none}
-  nav a.active{color:#fb923c}
-  nav .icon{font-size:20px}
-  .pilot-banner{background:#fef9c3;border-top:1px solid #fde68a;padding:8px 16px;text-align:center;font-size:11px;color:#92400e}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>먹보 Pro - 식습관 매니저</title>
+    <style>
+        :root {
+            --bg-color: #fdf6e3;
+            --header-color: #ff9aa2;
+            --box-yellow: #fff9b1;
+            --point-green: #b2f7ef;
+            --black: #222;
+        }
+
+        body {
+            background-color: #ffefd5;
+            font-family: 'Pretendard', -apple-system, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .phone-frame {
+            width: 360px;
+            height: 720px; /* 고정 높이로 전문적인 앱 느낌 부여 /
+            background: white;
+            border: 4px solid var(--black);
+            border-radius: 30px;
+            box-shadow: 10px 10px 0px var(--black);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        header {
+            background-color: var(--header-color);
+            padding: 20px;
+            text-align: center;
+            font-size: 26px;
+            font-weight: 900;
+            color: white;
+            border-bottom: 4px solid var(--black);
+            letter-spacing: 2px;
+        }
+
+        main {
+            padding: 20px;
+            background-color: var(--bg-color);
+            overflow-y: auto; / 내용이 많아지면 스크롤 /
+            flex: 1;
+        }
+
+        .section-title {
+            font-weight: bold;
+            margin-bottom: 8px;
+            font-size: 15px;
+            color: #444;
+        }
+
+        .input-group {
+            background: white;
+            border: 3px solid var(--black);
+            padding: 12px;
+            margin-bottom: 18px;
+            box-shadow: 4px 4px 0px var(--black);
+        }
+
+        .status-btns {
+            display: flex;
+            gap: 8px;
+        }
+
+        .status-btn {
+            flex: 1;
+            padding: 10px 0;
+            border: 2px solid var(--black);
+            background: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .status-btn:hover { background: #eee; }
+
+        .status-btn.active {
+            background-color: var(--black);
+            color: white;
+            transform: scale(0.95);
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid var(--black);
+            box-sizing: border-box;
+            outline: none;
+            font-size: 14px;
+        }
+
+        .save-btn {
+            width: 100%;
+            padding: 15px;
+            background-color: var(--point-green);
+            border: 3px solid var(--black);
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 4px 4px 0px var(--black);
+            margin-bottom: 20px;
+            transition: 0.1s;
+        }
+
+        .save-btn:active {
+            transform: translate(2px, 2px);
+            box-shadow: 1px 1px 0px var(--black);
+        }
+
+        / 기록 리스트 영역 스타일 /
+        .history-container {
+            margin-top: 10px;
+            display: none; / 기본은 숨김 /
+        }
+
+        .history-item {
+            background: white;
+            border: 2px solid var(--black);
+            padding: 8px;
+            margin-bottom: 5px;
+            font-size: 13px;
+            border-left: 8px solid var(--header-color);
+        }
+
+        .recommend-area {
+            border-top: 3px dashed var(--black);
+            margin-top: 20px;
+            padding-top: 20px;
+        }
+
+        .card {
+            background: var(--box-yellow);
+            border: 2px solid var(--black);
+            padding: 12px;
+            margin-bottom: 10px;
+            font-size: 13.5px;
+            line-height: 1.5;
+            position: relative;
+        }
+
+        .card b { color: #d63384; font-size: 14px; }
+
+        .refresh-btn {
+            width: 100%;
+            padding: 8px;
+            background: white;
+            border: 2px solid #999;
+            border-radius: 5px;
+            font-size: 12px;
+            cursor: pointer;
+            margin-top: 5px;
+        }
+    </style>
 </head>
 <body>
-<header>
-  <div class="logo">먹보 🍱</div>
-  <span class="badge">team-01</span>
-</header>
-<main>
-  <div class="tag"><span class="dot"></span>오늘의 식습관</div>
 
-  <div class="card">
-    <div class="card-title">오늘 먹은 것</div>
-    <div class="meals">
-      <div class="meal">
-        <div class="meal-icon">🥗</div>
-        <div class="meal-name">아침</div>
-        <div class="meal-cal">420 kcal</div>
-      </div>
-      <div class="meal">
-        <div class="meal-icon">🍱</div>
-        <div class="meal-name">점심</div>
-        <div class="meal-cal">680 kcal</div>
-      </div>
-      <div class="meal" style="border:2px dashed #fed7aa">
-        <div class="meal-icon" style="opacity:0.3">+</div>
-        <div class="meal-name" style="color:#fb923c">저녁 추가</div>
-        <div class="meal-cal"></div>
-      </div>
-    </div>
-  </div>
+    <div class="phone-frame">
+        <header>먹보 PRO</header>
 
-  <div class="card">
-    <div class="card-title">오늘의 영양 균형</div>
-    <div class="macro-bar">
-      <div class="macro-label"><span>탄수화물</span><span>65%</span></div>
-      <div class="bar-track"><div class="bar-fill" style="width:65%;background:#fb923c"></div></div>
-    </div>
-    <div class="macro-bar" style="margin-top:10px">
-      <div class="macro-label"><span>단백질</span><span>22%</span></div>
-      <div class="bar-track"><div class="bar-fill" style="width:22%;background:#34d399"></div></div>
-    </div>
-    <div class="macro-bar" style="margin-top:10px">
-      <div class="macro-label"><span>지방</span><span>13%</span></div>
-      <div class="bar-track"><div class="bar-fill" style="width:13%;background:#8b5cf6"></div></div>
-    </div>
-  </div>
+        <main id="app-main">
+            <div class="section-title">📍 오늘 나의 상태</div>
+            <div class="input-group">
+                <div class="status-btns">
+                    <button class="status-btn" onclick="selectStatus(this, '좋음')">좋음 😊</button>
+                    <button class="status-btn" onclick="selectStatus(this, '보통')">보통 😐</button>
+                    <button class="status-btn" onclick="selectStatus(this, '나쁨')">나쁨 😢</button>
+                </div>
+            </div>
 
-  <div class="card">
-    <div class="card-title">오늘의 개선 포인트</div>
-    <div class="checklist">
-      <div class="item"><span class="check done">✓</span>아침 식사 챙기기</div>
-      <div class="item"><span class="check done">✓</span>채소 반찬 포함하기</div>
-      <div class="item"><span class="check todo">○</span>저녁 단백질 보충하기</div>
-      <div class="item"><span class="check todo">○</span>야식 줄이기</div>
+            <div class="section-title">📝 무엇을 드셨나요?</div>
+            <div class="input-group">
+                <input type="text" id="memoInput" placeholder="예: 점심으로 두부 샐러드 냠냠">
+            </div>
+
+            <button class="save-btn" onclick="saveRecord()">로그 기록하기</button>
+
+            <div class="section-title" id="historyTitle" style="cursor:pointer; text-decoration: underline;">▼ 나의 기록 보기</div>
+            <div class="history-container" id="historyList">
+                </div>
+
+            <div class="recommend-area">
+                <div class="card">
+                    <b>🍳 오늘의 추천 조리법</b><br>
+                    <span id="recipeDisplay">불러오는 중...</span>
+                </div>
+                <div class="card" style="background-color: #e2f0cb;">
+                    <b>💡 오늘의 식습관 팁</b><br>
+                    <span id="tipDisplay">불러오는 중...</span>
+                </div>
+                <button class="refresh-btn" onclick="refreshInfo()">새로운 정보 가져오기 🔄</button>
+            </div>
+        </main>
     </div>
-  </div>
-</main>
-<nav>
-  <a href="#" class="active"><span class="icon">🏠</span>홈</a>
-  <a href="#"><span class="icon">📝</span>기록</a>
-  <a href="#"><span class="icon">💡</span>추천</a>
-  <a href="#"><span class="icon">👤</span>내 정보</a>
-</nav>
-<div class="pilot-banner">파일럿 산출물 — team-01 · 먹보 | 기획: 김아인 · 디자인: 박성빈 · 개발: 한승재, 이수민</div>
+
+    <script>
+        // 데이터 배열 (쉼표 누락 수정 완료)
+        const recipes = [
+            "두부 유부초밥: 밥 대신 으깬 두부를 넣어보세요!",
+            "참치 샐러드 비빔밥: 상추를 듬뿍 넣고 참치는 기름을 쫙 빼주세요.",
+            "바나나 오트밀: 요거트에 오트밀과 바나나를 섞으면 끝!",
+            "토마토 달걀볶음: 팬에 토마토와 달걀을 볶아 영양을 챙기세요.",
+            "훈제오리 무쌈: 무쌈에 훈제오리와 부추를 올려 돌돌 말아주세요.",
+            "도토리묵 무침: 상추, 오이와 함께 간장 양념에 살살 버무려요.",
+            "그릭 요거트 볼: 꾸덕한 요거트에 블루베리와 그래놀라를 얹으세요.",
+            "단호박 에그슬럿: 찐 단호박 안에 달걀과 치즈를 넣어 전자레인지에 띵!",
+            "양배추 쌈밥: 살짝 찐 양배추에 쌈장과 밥을 올려 건강하게 즐겨요.",
+            "브로콜리 새우볶음: 마늘과 함께 볶으면 항암 효과 만점!",
+            "낫또 비빔밥: 끈적한 낫또를 밥에 비벼 장 건강을 지켜요."
+        ];
+
+        const tips = [
+            "식사 전 물 한 잔은 과식을 막아줍니다.",
+            "음식은 20번 이상 꼭꼭 씹어 먹기로 해요.",
+            "밤 9시 이후 야식은 건강한 수면을 방해해요.",
+            "채소를 먼저 먹고 밥을 먹으면 혈당 조절에 좋습니다.",
+            "식사 30분 전 물 한 잔은 소화력을 높여줘요.",
+            "음식을 먹을 때는 TV나 스마트폰을 잠시 꺼두세요.",
+            "작은 접시를 사용하면 식사량을 조절하기 쉬워집니다.",
+            "현미나 잡곡밥은 식이섬유가 풍부해 포만감이 오래가요.",
+            "식후 바로 눕지 말고 10분만 가볍게 움직여보세요."
+        ];
+
+        let selectedStatus = "";
+
+        // 상태 선택
+        function selectStatus(btn, status) {
+            document.querySelectorAll('.status-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            selectedStatus = status;
+        }
+
+        // 저장 기능 (화면에 리스트 추가)
+        function saveRecord() {
+            const memoInput = document.getElementById('memoInput');
+            const memo = memoInput.value;
+            const historyList = document.getElementById('historyList');
+            const historyContainer = document.getElementById('historyList');
+
+            if (!selectedStatus || !memo) {
+                alert("상태와 메모를 모두 입력해주세요! ✨");
+                return;
+            }
+
+            // 새로운 기록 요소 생성
+            const newItem = document.createElement('div');
+            newItem.className = 'history-item';
+            newItem.innerHTML = <strong>[${selectedStatus}]</strong> ${memo};
+            
+            // 리스트 맨 위에 추가
+            historyList.insertBefore(newItem, historyList.firstChild);
+            
+            // 입력창 초기화
+            memoInput.value = "";
+            alert("기록되었습니다! 당신은 이제 먹기 장인! 🏆");
+            
+            // 기록 영역 보이게 설정
+            historyContainer.style.display = 'block';
+        }
+
+        // 기록 보기 토글 기능
+        document.getElementById('historyTitle').onclick = function() {
+            const list = document.getElementById('historyList');
+            list.style.display = (list.style.display === 'none' || list.style.display === '') ? 'block' : 'none';
+        };
+
+        // 랜덤 정보 갱신
+        function refreshInfo() {
+            const rIdx = Math.floor(Math.random()  recipes.length);
+            const tIdx = Math.floor(Math.random() * tips.length);
+            document.getElementById('recipeDisplay').innerText = recipes[rIdx];
+            document.getElementById('tipDisplay').innerText = tips[tIdx];
+        }
+
+        window.onload = refreshInfo;
+    </script>
 </body>
 </html>
